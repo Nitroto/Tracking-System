@@ -21,7 +21,6 @@ Issue Tracker REST Services
 You are given the following REST services for your Social Network SPA application.
 •	Services base URL (in the Windows Azure cloud): http://softuni-issue-tracker.azurewebsites.net
 •	Services help page (online documentation): http://softuni-issue-tracker.azurewebsites.net/help 
-•	Services admin user (you can later make your own user admin using the “makeadmin” endpoint described below): Username: admin@softuni.bg ; Password: 123456
 The documentation below provides additional details for the Social Network REST services.
 Issue Tracker Web Design
 You аre given the Web design and UI prototype of the Issue Tracker SPA application as a folder with screenshots. You need to convert the design to HTML + CSS. Pixel-perfect layout is not required. You do not need to match the design at all, neither the sizes, alignment, fonts nor the colors of the elements.  A responsive design is highly desirable. You can use responsive CSS frameworks like Bootstrap.
