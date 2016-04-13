@@ -1,2 +1,2 @@
-require('./angular-route');
+require('./../../../libs/angular-route');
 module.exports = 'ngRoute';

@@ -3,31 +3,20 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('trackingSystem', [
         'ngRoute',
+        'ngAnimate',
+        'angular-growl',
         'trackingSystem.home',
         'trackingSystem.login',
+        'trackingSystem.register',
         'trackingSystem.version'
     ]).constant("myConfig", {
         'baseServiceUrl': 'http://softuni-issue-tracker.azurewebsites.net',
         "port": "80"
-    }).config(['$routeProvider', function ($routeProvider) {
-        // $routeProvider.when('/',{
-        //     templateUrl: 'app/home/home.html',
-        //     controller:'HomeController'
-        // });
-        //
-        // $routeProvider.when('/login',{
-        //     templateUrl: 'app/login',
-        //     controller:'LoginController'
-        // });
-        //
-        // $routeProvider.when('/register',{
-        //     templateUrl: 'app/register',
-        //     controller:'RegisterController'
-        // });
-
+    }).config(['$routeProvider','growlProvider', function ($routeProvider,growlProvider) {
         $routeProvider.otherwise(
             {redirectTo: '/'}
         );
+        growlProvider.globalTimeToLive(5000);
     }]);
 
 // app.run(function ($rootScope, $location, authService) {

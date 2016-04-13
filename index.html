@@ -13,19 +13,21 @@
     <title>SoftUni Tracking System</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="app/app.css">
-    <script src="app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/angular-growl.min.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+<body>
+<div growl></div>
+</body>
 <ul class="menu">
     <li><a href="#/home">Home</a></li>
     <li><a href="#/login">Login</a></li>
+    <li><a href="#/register">Login</a></li>
 </ul>
 
 <!--[if lt IE 7]>
@@ -33,17 +35,27 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ng-view></div>
+<div class="col-md-8" ng-view></div>
 
 <div>Angular seed app: v<span traking-version></span></div>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
-<script src="app/bower_components/angular/angular.js"></script>
-<script src="app/bower_components/angular-route/angular-route.js"></script>
+
+<!-- Load app libraries -->
+<script src="libs/angular.js"></script>
+<script src="libs/angular-route.js"></script>
+<script src="libs/jquery.js"></script>
+<script src="libs/bootstrap.js"></script>
+<script src="libs/modernizr-2.8.3.min.js"></script>
+<script src="libs/angular-growl.js"></script>
+<script src="libs/angular-animate.min.js"></script>
+
+<!-- Load app source code: main script, services, controllers, etc. -->
 <script src="app/app.js"></script>
 <script src="app/home/home.js"></script>
+<script src="app/register/register.js"></script>
 <script src="app/login/login.js"></script>
 
 <script src="app/components/version/version.js"></script>

@@ -9,6 +9,6 @@ angular.module('trackingSystem.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeController', [function() {
-    console.log('Home controller!')
+.controller('HomeController', [function($scope,trackingService, notifyService,pageSize) {
+    
 }]);
