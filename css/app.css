@@ -1,5 +1,12 @@
 /* app css stylesheet */
 
+/* in case your dealing with a block element apply this to the element itself*/
+.center-block {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 .growl-item.ng-enter,
 .growl-item.ng-leave {
     -webkit-transition: 1s linear all;
