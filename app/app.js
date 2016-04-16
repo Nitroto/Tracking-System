@@ -10,6 +10,8 @@ angular.module('trackingSystem', [
     'trackingSystem.common',
     'trackingSystem.home',
     'trackingSystem.user',
+    'trackingSystem.user.login',
+    'trackingSystem.user.register',
     'trackingSystem.users.identity',
     'trackingSystem.common.header-directive',
     'trackingSystem.common.footer-directive',
@@ -19,11 +21,50 @@ angular.module('trackingSystem', [
 }).config(['$routeProvider', '$locationProvider', 'growlProvider', function ($routeProvider, $locationProvider, growlProvider) {
     growlProvider.globalTimeToLive(5000);
     growlProvider.globalInlineMessages(true);
-    $routeProvider.otherwise(
-        {redirectTo: '/'}
-    );
+    $routeProvider
+        .when('/', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/projects/add', {//admin only
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/projects/:id', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/projects/:id/edit', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/projects/:id/add-issue', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/issues/:id', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/issues/:id/edit', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/profile/password', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        })
+        .when('/logout', {
+            templateUrl: 'app/home/home-page.html',
+            // controller: 'HomePageController'
+        }).when('/notfound', {
+            templateUrl: 'app/home/home-page.html'
+        })
+        .otherwise(
+            {redirectTo: '/notfound'}
+        );
 }]);
-//     .run(function ($rootScope, $location, identify) {
+// .run(function ($rootScope, $location, identify) {
 //     $rootScope.$on('$locationChangeStart', function (event) {
 //
 //     });

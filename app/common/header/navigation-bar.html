@@ -1,5 +1,5 @@
 <header>
-    <div ng-if="user.role=='guest'">
+    <div ng-if="!loggedUser" loggedUser="loggedUser">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -15,8 +15,8 @@
             </div>
         </nav>
     </div>
-    <div ng-if="user.role!='guest'">
-        <nav class="navbar navbar-default" ui-if="user">
+    <div ng-if="loggedUser" loggedUser="loggedUser">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"

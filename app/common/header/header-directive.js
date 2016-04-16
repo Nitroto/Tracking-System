@@ -5,12 +5,12 @@ angular.module('trackingSystem.common.header-directive', [])
         return {
             restrict: 'A',
             replace: true,
-            // scope: {
-            //     loggedUser: '='
-            // },
+            scope: {
+                loggedUser: '='
+            },
             templateUrl: 'app/common/header/navigation-bar.html',
             link: function (scope, element, attrs, controller) {
-                console.log(scope);
+                // console.log(scope);
             }
             // controller: ['$scope', '$filter', function ($scope, $filter) {
             // }]

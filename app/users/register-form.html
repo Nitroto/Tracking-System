@@ -1,0 +1,43 @@
+<div class="col-md-3 well bs-component col-md-offset-1 border" ng-controller="RegisterFormController">
+    <form class="form-horizontal" name="registerForm">
+        <fieldset>
+            <legend>Join SoftUni Issue Tracker</legend>
+            <div class="form-group">
+                <label for="email" class="col-md-4 control-label">Email Address</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="email" placeholder="Email" required="required"
+                           ng-model="registerUser.email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="registerPassword" class="col-md-4 control-label">Password</label>
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="registerPassword" placeholder="Password"
+                           required="required" ng-model="registerUser.password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword" class="col-md-4 control-label">Confirm Password</label>
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Password"
+                           required="required" ng-model="registerUser.confirmPassword">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" required="required">I agree!
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <button type="submit" class="btn btn-success"
+                            ng-disabled="registerForm.$invalid||signup.password!=signup.confirmPassword"
+                            ng-click="register(signup)">
+                        Create an account
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
