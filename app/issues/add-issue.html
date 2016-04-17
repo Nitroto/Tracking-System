@@ -1,0 +1,76 @@
+<div class="panel panel-primary container col-md-5 well bs-component col-md-offset-3 border">
+    <div class="panel-heading">
+        <h3 class="panel-title">Add issue</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="addIssueForm">
+            <fieldset>
+                <legend>Issue details</legend>
+                <div class="form-group">
+                    <label for="title" class="col-md-4 control-label">Title</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="issue.title" id="title"
+                               placeholder="Title" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-md-4 control-label">Issue description</label>
+                    <div class="col-md-8">
+                        <textarea class="form-control" ng-model="issue.description" id="description"
+                                  placeholder="Issue description" required="required"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="project" class="col-md-4 control-label">Project</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="project" ng-model="issue.project" id="project"
+                                required="required">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="assignedId" class="col-md-4 control-label">LeadId</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="assignedId" ng-model="issue.assignedId" id="assignedId"
+                                required="required">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="priority" class="col-md-4 control-label">Priority</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="priority" ng-model="issue.priority" id="priority"
+                                required="required">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="height">Height</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate" class="col-md-4 control-label">DueDate</label>
+                    <div class="col-md-8">
+                        <input type="datetime-local" class="form-control" ng-model="issue.dueDate" id="dueDate"
+                               required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-success btn-lg btn-bloc"
+                                ng-disabled="addIssueForm.$invalid"
+                                ng-click="addIssue(issue)">Add Issue
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -2505,7 +2505,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    *   return result;
    * });
    *
-   * $stateProvider.state('home', {
+   * $stateProvider.state('dashboard', {
    *   views: {
    *     'contact.list': { controller: 'ListController' },
    *     'contact.item': { controller: 'ItemController' }
@@ -2514,9 +2514,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    *
    * // ...
    *
-   * $state.go('home');
-   * // Auto-populates list and item views with /partials/home/contact/list.html,
-   * // and /partials/home/contact/item.html, respectively.
+   * $state.go('dashboard');
+   * // Auto-populates list and item views with /partials/dashboard/contact/list.html,
+   * // and /partials/dashboard/contact/item.html, respectively.
    * </pre>
    *
    * @param {string} name The name of the builder function to decorate. 

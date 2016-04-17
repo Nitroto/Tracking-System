@@ -1,17 +1,19 @@
-<div class="row">
-    <div ng-if="currentUser===undefined">
-        <div ng-include="'app/users/login-form.html'"></div>
-        <div ng-include="'app/users/register-form.html'"></div>
-    </div>
-    <div ng-if="currentUser!==undefined">
-        <div ng-if="!currentUser.isAdmin">
-            <div ng-include="'app/home/user/user-dashboard.html'"></div>
+<div class="container">
+    <div class="row">
+        <div ng-if="currentUser===undefined">
+            <div ng-include="'app/users/login-form.html'"></div>
+            <div ng-include="'app/users/register-form.html'"></div>
         </div>
-        <div ng-if="currentUser.isAdmin">
-            <div ng-include="'app/home/admin/admin-dashboard.html'"></div>
+        <div ng-if="currentUser!==undefined" style="{right: auto;}">
+            <div ng-if="!currentUser.isAdmin">
+                <div ng-include="'app/dashboard/user/user-dashboard.html'"></div>
+            </div>
+            <div ng-if="currentUser.isAdmin">
+                <div ng-include="'app/dashboard/admin/admin-dashboard.html'"></div>
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="logout()">
+                Logout
+            </button>
         </div>
-        <button type="submit" class="btn btn-success" ng-click="logout()">
-            Logout
-        </button>
     </div>
 </div>

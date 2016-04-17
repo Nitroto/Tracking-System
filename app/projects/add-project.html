@@ -1,0 +1,60 @@
+<div class="panel panel-primary container col-md-5 well bs-component col-md-offset-3 border">
+    <div class="panel-heading">
+        <h3 class="panel-title">New project</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="newProjectForm">
+            <fieldset>
+                <legend>Project details</legend>
+                <div class="form-group">
+                    <label for="name" class="col-md-4 control-label">Name</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="project.name" id="name"
+                               placeholder="Project name" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-md-4 control-label">Project description</label>
+                    <div class="col-md-8">
+                        <textarea class="form-control" ng-model="project.description" id="description"
+                                  placeholder="Project description" required="required"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="key" class="col-md-4 control-label">Project key</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="project.key" id="key"
+                               placeholder="Project key" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="leadId" class="col-md-4 control-label">LeadId</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="leadId" ng-model="project.leadId" id="leadId"
+                                required="required">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="priorities" class="col-md-4 control-label">Priorities (separated by comma)</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="project.priorities" id="priorities"
+                               placeholder="Project priorities" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-success btn-lg btn-bloc"
+                                ng-disabled="newProjectForm.$invalid"
+                                ng-click="addProject(project)">Add project
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
