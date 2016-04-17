@@ -22,7 +22,7 @@
 </head>
 <body ng-controller="MainController">
 
-<div header user="user"></div>
+<div navigation user="user"></div>
 <div class="clearfix visible-lg"></div>
 <div growl></div>
 
@@ -56,16 +56,18 @@
 <!-- Load app source code: services -->
 <script src="app/identity/authentication-service.js"></script>
 <script src="app/identity/identity-service.js"></script>
+<script src="app/common/notifier-service.js"></script>
 
 <!-- Load app source code: controllers -->
 <script src="app/common/main/main-controller.js"></script>
-<script src="app/home/home-page-controller.js"></script>
+<script src="app/home/admin/admin-dashboard-controller.js"></script>
+<script src="app/home/user/user-dashboard-controller.js"></script>
 <script src="app/users/register-form-controller.js"></script>
 <script src="app/users/login-form-controller.js"></script>
 <script src="app/users/user-controller.js"></script>
 
 <!-- Load app source code: directives -->
-<script src="app/common/header/header-directive.js"></script>
+<script src="app/common/navigation/navigation-directive.js"></script>
 <script src="app/common/footer/footer-directive.js"></script>
 
 <!-- Load app source code: etc. -->

@@ -8,72 +8,84 @@ angular.module('trackingSystem', [
     'ui.router',
     'ui.bootstrap',
     'trackingSystem.common',
-    'trackingSystem.home',
+    'trackingSystem.common.navigation-directive',
+    'trackingSystem.common.footer-directive',
+    'trackingSystem.common.notifier-service',
+    'trackingSystem.home.admin',
+    'trackingSystem.home.user',
     'trackingSystem.user',
     'trackingSystem.user.login',
     'trackingSystem.user.register',
     'trackingSystem.users.identity',
-    'trackingSystem.common.header-directive',
-    'trackingSystem.common.footer-directive',
     'trackingSystem.version'
 ]).constant({
     "BASE_URL": 'http://softuni-issue-tracker.azurewebsites.net/'
-}).config(['$routeProvider', '$locationProvider', 'growlProvider', function ($routeProvider, $locationProvider, growlProvider) {
+}).config(['$routeProvider', 'growlProvider', function ($routeProvider, growlProvider) {
     growlProvider.globalTimeToLive(5000);
     growlProvider.globalInlineMessages(true);
+
     $routeProvider
         .when('/', {
-            templateUrl: 'app/home/home-page.html',
-            // controller: 'HomePageController'
+            templateUrl: 'app/common/main/main-layout.html',
+            controller: 'MainController'
         })
         .when('/projects/add', {//admin only
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/projects/:id', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/projects/:id/edit', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/projects/:id/add-issue', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/issues/:id', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/issues/:id/edit', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/profile/password', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/home/user-dashboard.html',
             // controller: 'HomePageController'
         })
         .when('/logout', {
-            templateUrl: 'app/home/home-page.html',
+            templateUrl: 'app/common/main/main-layout.html',
             // controller: 'HomePageController'
         }).when('/notfound', {
-            templateUrl: 'app/home/home-page.html'
+            templateUrl: 'app/home/user-dashboard.html'
         })
         .otherwise(
             {redirectTo: '/notfound'}
         );
-}]);
-// .run(function ($rootScope, $location, identify) {
-//     $rootScope.$on('$locationChangeStart', function (event) {
-//
-//     });
-//
-//     $rootScope.$on('$locationChangeStart', function (event) {
-//         if ($location.path().indexOf("/admin/") != -1 && !identify.isAdmin()) {
-//             $location.path('/login');
-//         } else if (($location.path().indexOf('/user') != -1) && identify.isAdmin()) {
-//             $location.path('/admin/home')
-//         }
-//     })
-// });
+}]).run(function ($rootScope, $location, authentication, notifier) {
+    $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
+        if (rejection === 'not authorized') {
+            notifier.warning('Please log in first.');
+            $location.path('/');
+        }
+    });
+
+    if (authentication.isAuthenticated()) {
+        authentication.getIdentity()
+            .then(function (identify) {
+                notifier.success('Welcome back, ' + identify.data['Username'] + '!');
+            });
+    }
+
+    // $rootScope.$on('$locationChangeStart', function (event) {
+    //     if ($location.path().indexOf("/admin/") != -1 && !identify.isAdmin()) {
+    //         $location.path('/login');
+    //     } else if (($location.path().indexOf('/user') != -1) && identify.isAdmin()) {
+    //         $location.path('/admin/home')
+    //     }
+    // })
+});

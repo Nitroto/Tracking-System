@@ -6,20 +6,20 @@ angular.module('trackingSystem.user.login', [])
         '$cookies',
         '$route',
         'authentication',
-        'growl',
-        function ($scope, $cookies, $route, authentication, growl) {
+        'notifier',
+        function ($scope, $cookies, $route, authentication, notifier) {
             $scope.login = function (user) {
                 authentication.login(user)
                     .then(function (loginUser) {
                         $route.reload();
-                        growl.success('Login Successful.');
+                        notifier.success('Login Successful.');
                         if (user.remember) {
                             $cookies.put('TrackingSystemAuth', loginUser.data['access_token'], {
                                 expires: loginUser.data['.expires']
                             });
                         }
                     }, function (error) {
-                        growl.error('Failed to login. Wrong email or password.');
+                        notifier.error('Failed to login. Wrong email or password.');
                     });
             };
         }]);

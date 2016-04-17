@@ -5,19 +5,10 @@ angular.module('trackingSystem.common', [])
         return {
             restrict: 'A',
             priority: 100000,
-            scope: false,
+            // scope: {
+            //     currentUser: '='
+            // },
             link: function () {
-
-            },
-            compile: function (element, attr, linker) {
-                var accessDenied = true;
-                var user = identity.getCurrentUser().then(function(user){
-                    var attributes = attr.access.split(' ');
-                    for (var i in attributes) {
-                        
-                    }
-
-                });
 
             }
         }

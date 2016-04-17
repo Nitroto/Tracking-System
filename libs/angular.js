@@ -10354,7 +10354,7 @@ function parseHeaders(headers) {
  * @param {(string|Object)} headers Headers to provide access to.
  * @returns {function(string=)} Returns a getter function which if called with:
  *
- *   - if called with single an argument returns a single header value or null
+ *   - if called with single an argument returns a single navigation value or null
  *   - if called with no arguments returns an object containing all headers.
  */
 function headersGetter(headers) {
@@ -10426,7 +10426,7 @@ function $HttpProvider() {
    * - **`defaults.xsrfCookieName`** - {string} - Name of cookie containing the XSRF token.
    * Defaults value is `'XSRF-TOKEN'`.
    *
-   * - **`defaults.xsrfHeaderName`** - {string} - Name of HTTP header to populate with the
+   * - **`defaults.xsrfHeaderName`** - {string} - Name of HTTP navigation to populate with the
    * XSRF token. Defaults value is `'X-XSRF-TOKEN'`.
    *
    * - **`defaults.headers`** - {Object} - Default headers for all $http requests.
@@ -11212,7 +11212,7 @@ function $HttpProvider() {
 
         defHeaders = extend({}, defHeaders.common, defHeaders[lowercase(config.method)]);
 
-        // using for-in instead of forEach to avoid unnecessary iteration after header has been found
+        // using for-in instead of forEach to avoid unnecessary iteration after navigation has been found
         defaultHeadersIteration:
         for (defHeaderName in defHeaders) {
           lowercaseDefHeaderName = lowercase(defHeaderName);
@@ -11226,7 +11226,7 @@ function $HttpProvider() {
           reqHeaders[defHeaderName] = defHeaders[defHeaderName];
         }
 
-        // execute if header value is a function for merged headers
+        // execute if navigation value is a function for merged headers
         return executeHeaderFns(reqHeaders, shallowCopy(config));
       }
     }
@@ -18695,7 +18695,7 @@ function $TemplateRequestProvider() {
    * @name $templateRequestProvider#httpOptions
    * @description
    * The options to be passed to the {@link $http} service when making the request.
-   * You can use this to override options such as the "Accept" header for template requests.
+   * You can use this to override options such as the "Accept" navigation for template requests.
    *
    * The {@link $templateRequest} will set the `cache` and the `transformResponse` properties of the
    * options if not overridden here.

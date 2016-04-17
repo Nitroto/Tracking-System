@@ -1,18 +1,20 @@
 'use strict';
 
-angular.module('trackingSystem.common.header-directive', [])
-    .directive('header', function () {
+angular.module('trackingSystem.common.navigation-directive', [])
+    .directive('navigation', function () {
         return {
             restrict: 'A',
             replace: true,
-            scope: {
-                loggedUser: '='
-            },
-            templateUrl: 'app/common/header/navigation-bar.html',
+            // scope: {
+            //     logout: '&',
+            //     currentUser: '='
+            // },
+            templateUrl: 'app/common/navigation/navigation-bar.html',
             link: function (scope, element, attrs, controller) {
-                // console.log(scope);
+
             }
             // controller: ['$scope', '$filter', function ($scope, $filter) {
+            //     $scope.$apply();
             // }]
         }
     });

@@ -31,10 +31,7 @@ angular.module('trackingSystem.users.authentication', [])
 
                 $http.post(BASE_URL + 'api/Token', data, config)
                     .then(function (response) {
-                        var tokenValue = response.data['access_token'];
                         sessionStorage['authToken'] = response.data['access_token'];
-
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
 
                         getIdentity().then(function () {
                             deferred.resolve(response);
@@ -48,7 +45,9 @@ angular.module('trackingSystem.users.authentication', [])
 
             var getIdentity = function () {
                 var deferred = $q.defer();
+                var tokenValue = sessionStorage['authToken'];
 
+                $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
                 $http.get(BASE_URL + 'Users/me')
                     .then(function (identityResponse) {
                         identity.setUser(identityResponse.data);
@@ -71,7 +70,7 @@ angular.module('trackingSystem.users.authentication', [])
 
             var logout = function () {
                 $cookies.remove(TOKEN_KEY);
-                delete sessionStorage['authToken'];
+                sessionStorage.clear();
                 $http.defaults.headers.common.Authorization = null;
                 identity.removeUser();
             };
