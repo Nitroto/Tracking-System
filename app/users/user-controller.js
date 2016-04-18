@@ -12,5 +12,4 @@ angular.module('trackingSystem.user', ['trackingSystem.users.authentication', 'n
                 .then(function (user) {
                     
                 })
-
         }]);

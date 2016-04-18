@@ -1,3 +1,32 @@
-<div>
-
+<div ng-cloak>
+    <div ng-pager total-pages="{{totalPages}}" current-page="{{currentPage}}"
+         page-changed="changePage(pageNum)"></div>
+    <div class="container col-md-6">
+        <div class="row">
+            <table class="table table-striped table-hover col-md-offset-2" ng-if="projects">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Lead</th>
+                    <th>Labels</th>
+                    <th>Priorities</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="project in projects" | limitTo:limit | itemsPerPage: limit>
+                    <td>{{project.Id}}</td>
+                    <td>{{project.Name}}</td>
+                    <td>{{project.Description}}</td>
+                    <td>{{project.Lead.Username}}</td>
+                    <td><span ng-repeat="label in project.Labels">{{label.Name}}; </span></td>
+                    <td><span ng-repeat="priority in project.Priorities">{{priority.Name}}; </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--<div ng-pager total-pages="{{totalPages}}" current-page="{{currentPage}}"-->
+         <!--page-changed="changePage(pageNum)"></div>-->
 </div>

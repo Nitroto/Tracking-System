@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.home.admin', [])
+angular.module('trackingSystem.dashboard.admin', [])
     .controller('AdminDashboardController', [
         '$scope',
         'identity',

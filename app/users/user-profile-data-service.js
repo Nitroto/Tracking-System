@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.user.data', [])
+angular.module('trackingSystem.users.data', [])
     .factory('userProfileData', [
         'data',
         function (data) {

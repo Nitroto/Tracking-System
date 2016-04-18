@@ -13,6 +13,10 @@ angular.module('trackingSystem.common.data-service', [])
                 },
                 authorizationErrorMessage = 'You must be logged in to do that';
 
+            // var tokenValue = sessionStorage['authToken'];
+            //
+            // $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
+
             function get(url, authorize) {
                 var deferred = $q.defer();
 
@@ -22,7 +26,7 @@ angular.module('trackingSystem.common.data-service', [])
                 } else {
                     var URL = BASE_URL + url;
 
-                    $http.get(url)
+                    $http.get(URL)
                         .then(function (data) {
                             deferred.resolve(data);
                         }, function (error) {
@@ -42,7 +46,7 @@ angular.module('trackingSystem.common.data-service', [])
                 } else {
                     var URL = BASE_URL + url;
 
-                    $http.post(url, data, config)
+                    $http.post(URL, data, config)
                         .then(function (data) {
                             deferred.resolve(data);
                         }, function (error) {
