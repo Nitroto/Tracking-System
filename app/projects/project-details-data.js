@@ -12,12 +12,12 @@ angular.module('trackingSystem.projects.data-service', [])
                 return data.get('Projects/')
             }
 
-            function editProject(id, project) {
-                return data.put('Projects/' + id, project)
+            function editProject(id, projectData) {
+                return data.put('Projects/' + id, projectData)
             }
 
-            function addProject(project) {
-                return data.post('Projects/', project)
+            function addProject(projectData) {
+                return data.post('Projects/', projectData)
             }
 
             return {

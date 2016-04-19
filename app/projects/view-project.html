@@ -1,3 +1,54 @@
-<div>
+<div class="panel panel-primary container col-md-4 well bs-component col-md-offset-1 border">
+    <div class="panel-heading">
+        <h3 class="panel-title">Project details:</h3>
+    </div>
+    <fieldset>
+        <legend>{{project.Name}}</legend>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="id" class="col-md-4 control-label">Project Id</label>
+                <span id="id" class="col-md-8">{{project.Id}}</span>
+            </div>
 
+            <div class="form-group">
+                <label for="description" class="col-md-4 control-label">Project Description</label>
+                <span id="description" class="col-md-8">{{project.Description}}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="lead" class="col-md-4 control-label">Project Lead</label>
+                <span id="lead" class="col-md-8">{{project.Lead.Username}}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="transitionSchemeId" class="col-md-4 control-label">Project Transition Scheme Id</label>
+                <span id="transitionSchemeId" class="col-md-8">{{project.TransitionSchemeId}}</span>
+            </div>
+
+            <div class="form-group" ng-if="project.Labels.length>0">
+                <label for="labels" class="col-md-4 control-label">Project Labels</label>
+                <span id="labels" class="col-md-8" ng-repeat="label in project.Labels">{{label.Name}}; </span>
+            </div>
+
+            <div class="form-group" ng-if="project.Priorities.length>0">
+                <label for="priorities" class="col-md-4 control-label">Project Priorities</label>
+                <span id="priorities" class="col-md-8"
+                      ng-repeat="priority in project.Priorities">{{priority.Name}}; </span>
+            </div>
+        </div>
+    </fieldset>
 </div>
+
+<div ng-repeat="issue in project.issues">
+    <div class="panel panel-primary container col-md-4 well bs-component col-md-offset-1 border">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{issue.Title}}</h3>
+        </div>
+        <fieldset>
+            <div class="panel-body">
+                <span>{{issue.Description}}</span>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
