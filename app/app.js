@@ -29,7 +29,7 @@ angular.module('trackingSystem', [
     ])
     .constant({
         'BASE_URL': 'http://softuni-issue-tracker.azurewebsites.net/',
-        'pages': 20
+        'pageSize': 20
     })
     .config(['$routeProvider', 'growlProvider', function ($routeProvider, growlProvider) {
         growlProvider.globalTimeToLive(5000);

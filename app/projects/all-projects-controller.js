@@ -6,16 +6,25 @@ angular.module('trackingSystem.projects.all', [])
         '$location',
         'notifier',
         'projectDetailsData',
-        function ($scope, $location, notifier, projectDetailsData) {
-            projectDetailsData.getAllProjects()
-                .then(function (result) {
-                    // $scope.currentPage = !!$routeParams.$skip ? ($routeParams.$skip / $routeParams.$top) + 1 : 1;
-                    // $scope.isLastPage = result.data.count <= $scope.currentPage * 20;
-                    $scope.projects = result.data;
-                    // $scope.totalPages = Math.ceil(result.data.count / 20);
-                }, function (error) {
-                    notifier.error(error.message)
-                });
+        'pageSize',
+        function ($scope, $location, notifier, projectDetailsData, pageSize) {
+            $scope.projectsParams = {
+                'startPage': 1,
+                'pageSize': pageSize,
+                'filter': ''
+            };
+
+            $scope.reloadProjects = function () {
+                projectDetailsData.getProjects($scope.projectsParams)
+                    .then(function (result) {
+                        $scope.result = result.data;
+                    }, function (error) {
+                        notifier.error(error.message)
+                    });
+
+            };
+
+            $scope.reloadProjects();
 
             $scope.projectSelected = function (id) {
                 $location.path('/projects/' + id)
