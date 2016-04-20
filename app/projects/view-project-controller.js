@@ -12,12 +12,11 @@ angular.module('trackingSystem.projects.view', [])
 
 
             projectDetailsData.getProject($routeParams.id)
-                .then(function (result) {
-                    $scope.project = result.data;
+                .then(function (project) {
+                    $scope.project = project.data;
                     issuesDetailsData.getProjectIssues($routeParams.id)
-                        .then(function (result) {
-                            console.log(result.data);
-                            $scope.project.issues = result.data;
+                        .then(function (issues) {
+                            $scope.project.issues = issues.data;
                         }, function (error) {
                             notifier.error(error.message)
                         });

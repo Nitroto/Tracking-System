@@ -4,7 +4,7 @@ angular.module('trackingSystem.projects.data-service', [])
     .factory('projectDetailsData', [
         'data',
         function (data) {
-            function getProject() {
+            function getProject(id) {
                 return data.get('Projects/' + id);
             }
 
