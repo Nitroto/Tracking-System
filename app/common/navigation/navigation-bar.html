@@ -1,8 +1,8 @@
 <header>
-    <div ng-if="currentUser===undefined" currentUser="currentUser">
+    <div ng-if="!currentUser.isAuthenticated" currentUser="currentUser">
         <div ng-include="'app/common/navigation/navigation-guest.html'"></div>
     </div>
-    <div ng-if="currentUser!==undefined" currentUser="currentUser">
+    <div ng-if="currentUser.isAuthenticated" currentUser="currentUser">
         <div ng-include="'app/common/navigation/navigation-user.html'"></div>
     </div>
 </header>

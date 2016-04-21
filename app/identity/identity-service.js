@@ -4,7 +4,7 @@ angular.module('trackingSystem.users.identity', [])
     .factory('identity', [
         '$q',
 
-        function ($q, BASE_URL) {
+        function ($q) {
             var currentUser = {};
             var deferred = $q.defer();
 

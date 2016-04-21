@@ -19,7 +19,7 @@ angular.module('trackingSystem.user.login', [])
                             });
                         }
                     }, function (error) {
-                        notifier.error('Failed to login. Wrong email or password.');
+                        notifier.error(error.data.Message);
                     });
             };
         }]);

@@ -11,7 +11,6 @@ angular.module('trackingSystem.users.authentication', [])
             var TOKEN_KEY = 'TrackingSystemAuth';
             var signup = function (user) {
                 var deferred = $q.defer();
-
                 $http.post(BASE_URL + 'api/Account/Register', user)
                     .then(function (response) {
                         deferred.resolve(response);

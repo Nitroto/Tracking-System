@@ -21,7 +21,7 @@
                     <span><strong>Transition Scheme Id:</strong> {{project.TransitionSchemeId}}</span>
                 </div>
                 <div ng-if="project.Labels.length > 0">
-                    <span>Labels:</span> <span id="labels" class="col-md-8" ng-repeat="label in project.Labels">{{label.Name}}; </span>
+                    <span><strong>Labels:</strong></span> <span id="labels" ng-repeat="label in project.Labels">{{label.Name}}; </span>
                 </div>
 
                 <div ng-if="project.Priorities.length > 0">

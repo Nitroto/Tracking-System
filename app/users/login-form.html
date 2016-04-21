@@ -1,4 +1,4 @@
-<div class="col-md-5 well bs-component col-md-offset-1 border" ng-controller="LoginFormController">
+<div class="col-md-5 well bs-component border text-left" ng-controller="LoginFormController">
     <form class="form-horizontal" name="loginForm">
         <fieldset>
             <legend>Login</legend>
@@ -23,8 +23,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
-                    <button type="submit" class="btn btn-success btn-lg btn-bloc" ng-disabled="loginForm.$invalid"
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-block" ng-disabled="loginForm.$invalid"
                             ng-click="login(user)">Sign in
                     </button>
                 </div>

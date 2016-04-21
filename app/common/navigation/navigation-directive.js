@@ -13,11 +13,5 @@ angular.module('trackingSystem.common.navigation-directive', [])
             link: function (scope, element, attrs, controller) {
 
             }
-            // controller: ['$scope', '$filter', function ($scope, $filter) {
-            //     $scope.$apply();
-            // }]
         }
     });
-
-
-//link:function(scope,element,attrs,controller){}

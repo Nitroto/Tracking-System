@@ -23,6 +23,7 @@ angular.module('trackingSystem', [
         'trackingSystem.users.data',
         'trackingSystem.projects.all',
         'trackingSystem.projects.view',
+        'trackingSystem.projects.add',
         'trackingSystem.projects.data-service',
         'trackingSystem.issues.data-service',
         'trackingSystem.version'
@@ -46,7 +47,7 @@ angular.module('trackingSystem', [
             })
             .when('/projects/add', {//admin only
                 templateUrl: 'app/projects/add-project.html',
-                // controller: 'HomePageController'
+                controller: 'AddProjectController'
             })
             .when('/projects/:id', {
                 templateUrl: 'app/projects/view-project.html',

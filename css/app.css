@@ -1,6 +1,14 @@
 /* app css stylesheet */
 
 /* in case your dealing with a block element apply this to the element itself*/
+.required::after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 8px;
+    top: 7px;
+}
+
 .center-block {
     margin-left: auto;
     margin-right: auto;
@@ -42,4 +50,30 @@
 .menu > li:nth-child(1):before {
     content: "";
     padding: 0;
+}
+
+.typeahead .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+}
+
+.typeahead .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+}
+
+.typeahead .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 }

@@ -9,12 +9,25 @@ angular.module('trackingSystem.common', [])
         'identity',
         'notifier',
         function ($scope, $location, $route, authentication, identity, notifier) {
+            $scope.currentUser = {
+                isAuthenticated: identity.isAuthenticated()
+            };
+
+            var waitForLogin = function () {
+                identity.getUser()
+                    .then(function (user) {
+                        $scope.currentUser = user;
+                        $scope.currentUser.isAuthenticated = identity.isAuthenticated();
+                    }, function (error) {
+                        console.log(error);
+                    });
+            };
 
             waitForLogin();
 
             $scope.logout = function logout() {
                 authentication.logout();
-                $scope.currentUser = undefined;
+                $scope.currentUser.isAuthenticated = identity.isAuthenticated();
                 waitForLogin();
                 $location.path('/');
                 notifier.success('Logout successful.');
@@ -24,11 +37,4 @@ angular.module('trackingSystem.common', [])
             $scope.search = function (searchTerm) {
                 $location.path('/projects/search').search('term', searchTerm);
             };
-
-            function waitForLogin() {
-                identity.getUser()
-                    .then(function (user) {
-                        $scope.currentUser = user;
-                    });
-            }
         }]);

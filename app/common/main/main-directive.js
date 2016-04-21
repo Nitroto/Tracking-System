@@ -5,11 +5,7 @@ angular.module('trackingSystem.common', [])
         return {
             restrict: 'A',
             priority: 100000,
-            // scope: {
-            //     currentUser: '='
-            // },
-            link: function () {
-
+            link: function (scope, element, attrs, controller) {
             }
         }
     }]);
