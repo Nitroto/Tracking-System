@@ -1,13 +1,19 @@
 'use strict';
 
-angular.module('trackingSystem.projects.add', [])
-    .controller('AddProjectController', [
+angular.module('trackingSystem.projects.edit', [])
+    .controller('EditProjectController', [
         '$scope',
+        '$routeParams',
         'notifier',
         'userDetailsData',
+        'projectDetailsData',
         'data',
-        function ($scope, notifier, userDetailsData, data) {
+        function ($scope, $routeParams, notifier, userDetailsData, projectDetailsData, data) {
             $scope.project = {};
+            
+            projectDetailsData.getProject($routeParams.id).then(function (response) {
+                $scope.projectData = response;
+            });
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
                 .then(function (response) {
@@ -32,7 +38,7 @@ angular.module('trackingSystem.projects.add', [])
                     Labels: [],
                     Priorities: []
                 };
-                
+
                 data.post('projects', project)
                     .then(function (response) {
                         console.log(response);

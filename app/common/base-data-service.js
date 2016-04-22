@@ -57,9 +57,52 @@ angular.module('trackingSystem.common.data-service', [])
                 return deferred.promise;
             }
 
+            function put(url, data, authorize) {
+                var deferred = $q.defer();
+
+                if (authorize && !identity.isAuthenticated()) {
+                    notifier.error(authorizationErrorMessage);
+                    deferred.reject();
+                } else {
+                    var URL = BASE_URL + url;
+
+                    $http.put(URL, data, config)
+                        .then(function (data) {
+                            deferred.resolve(data);
+                        }, function (error) {
+                            deferred.reject(error);
+                        })
+                }
+
+                return deferred.promise;
+            }
+            
+            // Not implemented in backend
+            function del(url, authorize) {
+                var deferred = $q.defer();
+
+                if (authorize && !identity.isAuthenticated()) {
+                    notifier.error(authorizationErrorMessage);
+                    deferred.reject();
+                } else {
+                    var URL = BASE_URL + url;
+
+                    $http.delete(URL, config)
+                        .then(function (data) {
+                            deferred.resolve(data);
+                        }, function (error) {
+                            deferred.reject(error);
+                        })
+                }
+
+                return deferred.promise;
+            }
+
             return {
                 get: get,
-                post: post
+                post: post,
+                put: put,
+                delete: del
             }
         }
     ]);

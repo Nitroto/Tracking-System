@@ -22,10 +22,12 @@ angular.module('trackingSystem', [
         'trackingSystem.users.identity',
         'trackingSystem.users.data',
         'trackingSystem.projects.all',
-        'trackingSystem.projects.view',
+        'trackingSystem.projects.project-view',
         'trackingSystem.projects.add',
+        'trackingSystem.projects.edit',
         'trackingSystem.projects.data-service',
         'trackingSystem.issues.data-service',
+        'trackingSystem.issues.issue-view',
         'trackingSystem.version'
     ])
     .constant({
@@ -55,7 +57,7 @@ angular.module('trackingSystem', [
             })
             .when('/projects/:id/edit', {
                 templateUrl: 'app/projects/edit-project.html',
-                // controller: 'HomePageController'
+                controller: 'EditProjectController'
             })
             .when('/projects/:id/add-issue', {
                 templateUrl: 'app/issues/add-issue.html',
@@ -63,7 +65,7 @@ angular.module('trackingSystem', [
             })
             .when('/issues/:id', {
                 templateUrl: 'app/issues/view-issue.html',
-                // controller: 'HomePageController'
+                controller: 'ViewIssueController'
             })
             .when('/issues/:id/edit', {
                 templateUrl: 'app/issues/edit-issue.html',

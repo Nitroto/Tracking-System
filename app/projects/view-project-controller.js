@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.projects.view', [])
+angular.module('trackingSystem.projects.project-view', [])
     .controller('ViewProjectController', [
         '$scope',
         '$location',
@@ -9,7 +9,6 @@ angular.module('trackingSystem.projects.view', [])
         'projectDetailsData',
         'issuesDetailsData',
         function ($scope, $location, $routeParams, notifier, projectDetailsData, issuesDetailsData) {
-
 
             projectDetailsData.getProject($routeParams.id)
                 .then(function (project) {
@@ -24,9 +23,8 @@ angular.module('trackingSystem.projects.view', [])
                     notifier.error(error.message)
                 });
 
-
-            $scope.projectSelected = function (id) {
-                $location.path('/projects/' + id)
+            $scope.projectDelete = function () {
+                //Not available in back-end
             }
         }
     ]);

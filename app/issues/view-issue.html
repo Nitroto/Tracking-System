@@ -1,3 +1,50 @@
-<div>
+<div class="container col-md-6">
 
+    <div class="panel panel-primary well bs-component col-md-offset-1 border">
+        <div class="panel-heading">
+            <h3 class="panel-title">Issue details:</h3>
+        </div>
+
+        <fieldset>
+            <legend>{{issue.Title}}</legend>
+            <div class="panel-body">
+                <div>
+                    <span><strong>Id:</strong> {{issue.Id}}</span>
+                </div>
+                <div>
+                    <span><strong>Description:</strong> {{issue.Description}}</span>
+                </div>
+                <div>
+                    <span><strong>Due date:</strong> {{issue.DueDate}}</span>
+                </div>
+                <div>
+                    <span><strong>Author:</strong> {{issue.Author.Username}}</span>
+                </div>
+                <div>
+                    <span><strong>Assignee:</strong> {{issue.Assignee.Username}}</span>
+                </div>
+                <div>
+                    <span><strong>Priority:</strong> {{issue.Priority.Name}}</span>
+                </div>
+                <div>
+                    <span><strong>Status:</strong> {{issue.Status.Name}}</span>
+                </div>
+                <div ng-if="issue.Labels.length > 0">
+                    <span><strong>Labels:</strong></span> <span id="labels" ng-repeat="label in issue.Labels">{{label.Name}}; </span>
+                </div>
+
+                <div ng-if="issue.AvailableStatuses.length > 0">
+                    <span><strong>Priorities</strong></span>
+                    <span ng-repeat="status in issue.AvailableStatuses">{{status.Name}}; </span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="text-center">
+        <a href="#/projects/{{issue.Id}}/edit" class="btn btn-warning">Edit Issue</a>
+        <a href="#/projects/{{issue.Id}}/edit" class="btn btn-info">Change Issue Status</a>
+        <a href="#" class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</a>
+        <!--<a href="#/projects/{{issue.Id}}/add-issue" class="btn btn-primary">Add Comment</a>-->
+    </div>
+    <br/>
 </div>

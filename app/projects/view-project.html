@@ -34,7 +34,7 @@
     <div class="text-center">
         <a href="#/projects/{{project.Id}}/add-issue" class="btn btn-primary">Add Issue</a>
         <a href="#/projects/{{project.Id}}/edit" class="btn btn-warning">Edit Project</a>
-        <a href="#" class="btn btn-danger">Delete project</a>
+        <a class="btn btn-danger" ng-click="projectDelete()" disabled="disabled">Delete project</a>
     </div>
     <br/>
 </div>
