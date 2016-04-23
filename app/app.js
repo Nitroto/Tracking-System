@@ -8,17 +8,20 @@ angular.module('trackingSystem', [
         'angular-loading-bar',
         'ui.bootstrap',
         'ui.bootstrap.validation',
+        'initialValue',
         'trackingSystem.common',
         'trackingSystem.common.navigation-directive',
         'trackingSystem.common.footer-directive',
         'trackingSystem.common.notifier-service',
         'trackingSystem.common.data-service',
+        'trackingSystem.common.converter',
         'trackingSystem.dashboard',
         'trackingSystem.dashboard.admin',
         'trackingSystem.dashboard.user',
         'trackingSystem.user',
         'trackingSystem.user.login',
         'trackingSystem.user.register',
+        'trackingSystem.users.authentication',
         'trackingSystem.users.identity',
         'trackingSystem.users.data',
         'trackingSystem.projects.all',
@@ -26,13 +29,22 @@ angular.module('trackingSystem', [
         'trackingSystem.projects.add',
         'trackingSystem.projects.edit',
         'trackingSystem.projects.data-service',
+        'trackingSystem.projects.first-letter-filter',
         'trackingSystem.issues.data-service',
         'trackingSystem.issues.issue-view',
+        'trackingSystem.issue.add',
         'trackingSystem.version'
     ])
     .constant({
         'BASE_URL': 'http://softuni-issue-tracker.azurewebsites.net/',
-        'pageSize': 20
+        'pageSize': 20,
+        'Priority': {
+            Lowest: 1,
+            Low: 2,
+            Medium: 3,
+            High: 4,
+            Highest: 5
+        }
     })
     .config(['$routeProvider', 'growlProvider', function ($routeProvider, growlProvider) {
         growlProvider.globalTimeToLive(5000);
@@ -61,7 +73,7 @@ angular.module('trackingSystem', [
             })
             .when('/projects/:id/add-issue', {
                 templateUrl: 'app/issues/add-issue.html',
-                // controller: 'HomePageController'
+                controller: 'AddIssueController'
             })
             .when('/issues/:id', {
                 templateUrl: 'app/issues/view-issue.html',

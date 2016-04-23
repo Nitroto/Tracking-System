@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('trackingSystem.projects.add', [])
-    .controller('AddProjectController', [
+angular.module('trackingSystem.issue.add', [])
+    .controller('AddIssueController', [
         '$scope',
+        '$routeParams',
         'notifier',
         'userDetailsData',
         'data',
-        function ($scope, notifier, userDetailsData, data) {
-            $scope.project = {};
+        function ($scope, $routeParams, notifier, userDetailsData, data) {
+            $scope.ProjectId = $routeParams.id;
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
                 .then(function (response) {
@@ -23,16 +24,16 @@ angular.module('trackingSystem.projects.add', [])
                     notifier.error(error.data.Message)
                 });
 
-            $scope.addProject = function (projectData) {
-                var project = {
-                    Name: projectData.name,
-                    Description: projectData.description,
-                    ProjectKey: projectData.key,
-                    LeadId: projectData.leadId,
-                    Labels: [],
+            $scope.addIssue = function (issueData) {
+                var issue = {
+                    Title: issueData.title,
+                    Description: issueData.description,
+                    ProjectId: issueData.projectId,
+                    AssignedId: issueData.assignedId,
+                    DueDate: issueData.dueDate,
                     Priorities: []
                 };
-
+                console.log(issue);
                 data.post('projects', project)
                     .then(function (response) {
                         console.log(response);
@@ -41,11 +42,6 @@ angular.module('trackingSystem.projects.add', [])
                         console.log(error);
                         notifier.error(error.data.Message);
                     });
-
-                $scope.generateProjectKey = function () {
-                    var title = $scope.project.name;
-                    console.log(title);
-                }
             }
         }
     ]);

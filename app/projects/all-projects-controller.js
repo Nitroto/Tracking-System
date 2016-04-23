@@ -28,21 +28,6 @@ angular.module('trackingSystem.projects.all', [])
 
             $scope.projectSelected = function (id) {
                 $location.path('/projects/' + id)
-            }
+            };
         }
     ]);
-
-
-// .controller('ProjectDetailsController', [
-//     '$window',
-//     '$location',
-//     '$route',
-//     '$sce',
-//     'project',
-//     'identity',
-//     'sweetAlertDispatcher',
-//     'notifier',
-//     'projectDetailsData',
-//     'addProjectData',
-//     'videoUrlUtilities',
-//     projectDetailsController]);
