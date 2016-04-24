@@ -39,10 +39,9 @@ angular.module('trackingSystem.issues.issue-view', [])
             $scope.commentIssue = function (id, comment) {
                 commentsDetailsData.addComment(id, comment)
                     .then(function (response) {
-                        console.log(response);
                         notifier.success('Comment added successful.');
                     }, function (error) {
-                        notifier.error(error.Message);
+                        notifier.error(error.data.Message);
                     });
                 $scope.comment = undefined;
             };
