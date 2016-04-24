@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('trackingSystem.users.identity', [])
+angular.module('trackingSystem.identity.identity', [])
     .factory('identity', [
         '$q',
-
         function ($q) {
             var currentUser = {};
             var deferred = $q.defer();

@@ -41,10 +41,11 @@
         </fieldset>
     </div>
     <div class="text-center">
-        <a href="#/issues/{{issue.Id}}/edit" class="btn btn-warning">Edit Issue</a>
-        <a href="#/issues/{{issue.Id}}/edit" class="btn btn-info">Change Issue Status</a>
-        <a href="#" class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</a>
-        <!--<a href="#/projects/{{issue.Id}}/add-issue" class="btn btn-primary">Add Comment</a>-->
+        <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
+        <button class="btn btn-primary" ng-click="comment(issue.id)">Add Comment</button>
+        <button class="btn btn-warning" ng-click="editIssue(issue.Id)">Edit Issue</button>
+        <button class="btn btn-info" ng-click="changeStatus(issue.Id)">Change Issue Status</button>
+        <button class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</button>
     </div>
     <br/>
 </div>

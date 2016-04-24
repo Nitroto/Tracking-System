@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.users.authentication', [])
+angular.module('trackingSystem.identity.authentication', [])
     .factory('authentication', [
         '$http',
         '$q',

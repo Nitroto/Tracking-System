@@ -8,8 +8,8 @@ angular.module('trackingSystem.issues.data-service', [])
                 return data.get('Projects/' + id + '/Issues')
             }
 
-            function getUserIssues(pageSize, pageNumber, orderAtribute) {
-                return data.get('Issues/me?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&orderBy=' + orderAtribute);
+            function getUserIssues(pageSize, pageNumber, orderAttribute) {
+                return data.get('Issues/me?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&orderBy=' + orderAttribute);
             }
 
             function getIssuesByFilter(query) {

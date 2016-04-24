@@ -9,7 +9,7 @@
                 <div class="form-group" ui-validation-show-errors>
                     <label for="name" class="col-md-4 control-label">Name</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.name" id="name" name="name"
+                        <input type="text" class="form-control" ng-model="project.Name" id="name" name="name"
                                placeholder="Project name" required="required">
                         <ui-validation-error-messages/>
                     </div>
@@ -17,7 +17,7 @@
                 <div class="form-group" ui-validation-show-errors>
                     <label for="description" class="col-md-4 control-label">Project description</label>
                     <div class="col-md-8">
-                        <textarea class="form-control" ng-model="project.description" id="description"
+                        <textarea class="form-control" ng-model="project.Description" id="description"
                                   placeholder="Project description" required="required" name="description"></textarea>
                         <ui-validation-error-messages/>
                     </div>
@@ -25,14 +25,14 @@
                 <div class="form-group">
                     <label for="key" class="col-md-4 control-label">Project key</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" disabled="disabled" ng-model="project.key" id="key"
-                               ng-value="project.name|extractor:true">
+                        <input type="text" class="form-control" disabled="disabled" ng-model="project.ProjectKey" id="key"
+                               ng-value="project.Name|extractor:true">
                     </div>
                 </div>
                 <div class="form-group" ui-validation-show-errors>
                     <label for="leadUsername" class="col-md-4 control-label">Lead</label>
                     <div class="col-md-8" ng-cloak>
-                        <input id="leadUsername" type="text" ng-model="project.leadId" placeholder="Lead username"
+                        <input id="leadUsername" type="text" ng-model="project.LeadId" placeholder="Lead username"
                                uib-typeahead="user.Id as user.Username for user in users | filter:$viewValue | limitTo:8"
                                typeahead-loading="loadingUsers" typeahead-no-results="noResults"
                                typeahead-input-formatter="formatLead($model)"
@@ -47,7 +47,7 @@
                 <div class="form-group" ui-validation-show-errors>
                     <label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.labels" id="labels"
+                        <input type="text" class="form-control" ng-model="project.Labels" id="labels"
                                placeholder="Project labels" required="required" name="labels">
                         <ui-validation-error-messages/>
                     </div>
@@ -55,7 +55,7 @@
                 <div class="form-group" ui-validation-show-errors>
                     <label for="priorities" class="col-md-4 control-label">Priorities (separated by comma)</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.priorities" id="priorities"
+                        <input type="text" class="form-control" ng-model="project.Priorities" id="priorities"
                                placeholder="Project priorities" required="required" name="priorities">
                         <ui-validation-error-messages/>
                     </div>
@@ -66,6 +66,9 @@
                         <button type="submit" class="btn btn-success btn-lg btn-bloc"
                                 ng-disabled="addProjectForm.$invalid"
                                 ng-click="addProject(project)">Add project
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-lg btn-bloc"
+                                ng-click="cancel()">Cancel
                         </button>
                     </div>
                 </div>

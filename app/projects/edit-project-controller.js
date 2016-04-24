@@ -11,11 +11,12 @@ angular.module('trackingSystem.projects.edit', [])
         'projectDetailsData',
         'data',
         function ($scope, $routeParams, $location, notifier, converter, userDetailsData, projectDetailsData, data) {
-            $scope.projectData = {};
+            $scope.projectOriginalData = {};
+            $scope.project = {};
 
             projectDetailsData.getProject($routeParams.id)
                 .then(function (response) {
-                    $scope.projectData = {
+                    $scope.project = {
                         Id: response.data.Id,
                         Name: response.data.Name,
                         ProjectKey: response.data.ProjectKey,
@@ -26,7 +27,7 @@ angular.module('trackingSystem.projects.edit', [])
                         TransitionSchemeId: response.data.TransitionSchemeId
                     };
 
-                    document.getElementById("description").defaultValue = $scope.projectData.Description;
+                    angular.copy($scope.project, $scope.projectOriginalData);
                 });
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
@@ -44,15 +45,19 @@ angular.module('trackingSystem.projects.edit', [])
                 });
 
             $scope.editProject = function (projectData) {
+
                 console.log(projectData);
-                var project = {
-                    Name: projectData.name,
-                    Description: projectData.description,
-                    ProjectKey: projectData.key,
-                    LeadId: projectData.leadId,
+
+
+                var editedProject = {
+                    Name: projectData.Name,
+                    Description: projectData.Description !== undefined ? projectData.Description : $scope.projectOriginalData.Description,
+                    ProjectKey: projectData.ProjectKey,
+                    LeadId: projectData.Lead.LeadId !== undefined ? projectData.Lead.LeadId : $scope.projectOriginalData.Lead.LeadId,
                     Labels: [],
                     Priorities: []
                 };
+
 
                 // data.put('projects', project)
                 //     .then(function (response) {
@@ -65,7 +70,8 @@ angular.module('trackingSystem.projects.edit', [])
             };
 
             $scope.cancel = function () {
-                $location.path('/projects/' + $scope.projectData.Id);
+                angular.copy($scope.projectOriginalData, $scope.project);
+                $location.path('/projects/' + $scope.project.Id);
             };
         }
     ]);

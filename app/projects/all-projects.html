@@ -1,9 +1,3 @@
-<uib-tabset active="activeJustified" justified="true">
-    <uib-tab index="0" heading="Justified"></uib-tab>
-    <uib-tab index="1" heading="SJ"></uib-tab>
-    <uib-tab index="2" heading="Long Justified"></uib-tab>
-</uib-tabset>
-
 <div ng-cloak>
     <div class="text-center">
         <div class="container">
@@ -14,31 +8,38 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row  col-md-12">
-            <table class="table table-striped table-hover" ng-if="result.Projects.length>0">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Lead</th>
-                    <th>Labels</th>
-                    <th>Priorities</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="project in result.Projects" ng-click="projectSelected(project.Id)">
-                    <td>{{project.Id}}</td>
-                    <td class="col-md-3">{{project.Name}}</td>
-                    <td class="col-md-10">{{project.Description}}</td>
-                    <td>{{project.Lead.Username}}</td>
-                    <td><span ng-repeat="label in project.Labels">{{label.Name}}; </span></td>
-                    <td><span ng-repeat="priority in project.Priorities">{{priority.Name}}; </span></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="container-fluid">
+        <table class="table table-striped table-hover" ng-if="result.Projects.length>0">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Lead</th>
+                <th>Labels</th>
+                <th>Priorities</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="project in result.Projects" ng-click="projectSelected(project.Id)">
+                <td>{{project.Id}}</td>
+                <td>{{project.Name}}</td>
+                <td class="col-md-4">{{project.Description|limitTo : 200 }}</td>
+                <td>{{project.Lead.Username}}</td>
+                <td class="col-md-1">
+                        <span class="label label-primary" ng-repeat="label in project.Labels">
+                            {{label.Name}}
+                    </span>
+                </td>
+                <td class="col-md-1">
+                        <span class="label label-success" ng-repeat="priority in project.Priorities">
+                            {{priority.Name}}
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
         <div class="row text-center" ng-if="result.Projects.length>10">
             <uib-pagination total-items="result.TotalCount" ng-model="projectsParams.startPage"

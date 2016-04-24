@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.user.login', [])
+angular.module('trackingSystem.users.login', [])
     .controller('LoginFormController', [
         '$scope',
         '$cookies',

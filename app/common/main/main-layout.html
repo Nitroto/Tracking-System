@@ -1,16 +1,9 @@
-<div class="container">
-    <div class="row text-center">
-        <div ng-if="currentUser.isAuthenticated" style="{right: auto;}">
-            <div ng-if="!currentUser.isAdmin">
-                <div ng-include="'app/dashboard/user/user-dashboard.html'"></div>
-            </div>
-            <div ng-if="currentUser.isAdmin">
-                <div ng-include="'app/dashboard/admin/admin-dashboard.html'"></div>
-            </div>
-        </div>
-        <div ng-if="!currentUser.isAuthenticated">
-            <div ng-include="'app/users/login-form.html'"></div>
-            <div ng-include="'app/users/register-form.html'"></div>
-        </div>
+<div class="text-center">
+    <div ng-if="currentUser.isAuthenticated" style="{right: auto;}">
+        <div ng-include="'app/dashboard/dashboard.html'"></div>
+    </div>
+    <div class="container" ng-if="!currentUser.isAuthenticated">
+        <div ng-include="'app/users/login-form.html'"></div>
+        <div ng-include="'app/users/register-form.html'"></div>
     </div>
 </div>

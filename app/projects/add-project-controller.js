@@ -3,10 +3,11 @@
 angular.module('trackingSystem.projects.add', [])
     .controller('AddProjectController', [
         '$scope',
+        '$location',
         'notifier',
         'userDetailsData',
         'data',
-        function ($scope, notifier, userDetailsData, data) {
+        function ($scope, $location, notifier, userDetailsData, data) {
             $scope.project = {};
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
@@ -25,27 +26,24 @@ angular.module('trackingSystem.projects.add', [])
 
             $scope.addProject = function (projectData) {
                 var project = {
-                    Name: projectData.name,
-                    Description: projectData.description,
-                    ProjectKey: projectData.key,
-                    LeadId: projectData.leadId,
+                    Name: projectData.Name,
+                    Description: projectData.Description,
+                    ProjectKey: projectData.ProjectKey,
+                    LeadId: projectData.LeadId,
                     Labels: [],
                     Priorities: []
                 };
 
                 data.post('projects', project)
                     .then(function (response) {
-                        console.log(response);
                         notifier.success(response)
                     }, function (error) {
-                        console.log(error);
                         notifier.error(error.data.Message);
                     });
+            };
 
-                $scope.generateProjectKey = function () {
-                    var title = $scope.project.name;
-                    console.log(title);
-                }
+            $scope.cancel = function () {
+                $location.path('/');
             }
         }
     ]);

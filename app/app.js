@@ -4,6 +4,7 @@
 angular.module('trackingSystem', [
         'ngRoute',
         'ngAnimate',
+        'ngCookies',
         'angular-growl',
         'angular-loading-bar',
         'ui.bootstrap',
@@ -15,15 +16,17 @@ angular.module('trackingSystem', [
         'trackingSystem.common.notifier-service',
         'trackingSystem.common.data-service',
         'trackingSystem.common.converter',
+        'trackingSystem.common.return-back',
+        'trackingSystem.identity.authentication',
+        'trackingSystem.identity.identity',
+        'trackingSystem.users',
+        'trackingSystem.users.login',
+        'trackingSystem.users.register',
+        'trackingSystem.users.data',
+        'trackingSystem.users.user-issues-directive',
         'trackingSystem.dashboard',
         'trackingSystem.dashboard.admin',
         'trackingSystem.dashboard.user',
-        'trackingSystem.user',
-        'trackingSystem.user.login',
-        'trackingSystem.user.register',
-        'trackingSystem.users.authentication',
-        'trackingSystem.users.identity',
-        'trackingSystem.users.data',
         'trackingSystem.projects.all',
         'trackingSystem.projects.project-view',
         'trackingSystem.projects.add',
@@ -96,7 +99,7 @@ angular.module('trackingSystem', [
                 {redirectTo: '/notfound'}
             );
     }])
-    .run(function ($rootScope, $location, authentication, notifier, cfpLoadingBar) {
+    .run(function ($rootScope, $location, authentication, notifier) {
         $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
             if (rejection === 'not authorized') {
                 notifier.warning('Please log in first.');

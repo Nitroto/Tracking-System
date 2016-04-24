@@ -9,23 +9,20 @@
                 <div class="form-group">
                     <label for="name" class="col-md-4 control-label">Name</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.name" id="name"
-                               ng-value="projectData.Name" ng-init="project.name=projectData.Name" disabled="disabled">
+                        <input type="text" class="form-control" ng-model="project.Name" id="name" disabled="disabled">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description" class="col-md-4 control-label">Project description</label>
                     <div class="col-md-8">
-                        <textarea class="form-control" ng-model="project.description" id="description"
-                                  placeholder="Project description" required="required"
-                                  ng-init="project.description=projectData.Description"></textarea>
+                        <textarea class="form-control" ng-model="project.Description" id="description"
+                                  placeholder="Project description" required="required"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="key" class="col-md-4 control-label">Project key</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.key" id="key"
-                               ng-value="projectData.ProjectKey" ng-init="project.key=projectData.ProjectKey"
+                        <input type="text" class="form-control" ng-model="project.ProjectKey" id="key"
                                disabled="disabled">
                     </div>
                 </div>
@@ -33,12 +30,12 @@
                     <label for="leadUsername" class="col-md-4 control-label">Lead</label>
                     <div class="col-md-8" ng-cloak>
 
-                        <input id="leadUsername" type="text" ng-model="project.leadId" placeholder="Lead username"
+                        <input id="leadUsername" type="text" ng-model="project.Lead.Id"
+                               placeholder="Lead username"
                                uib-typeahead="user.Id as user.Username for user in users | filter:$viewValue | limitTo:8"
                                typeahead-loading="loadingUsers" typeahead-no-results="noResults"
-                               typeahead-input-formatter="formatLead($model)"
-                               class="form-control" required="required" ng-value="projectData.Lead.Username"
-                               ng-init="project.leadId=projectData.Lead.Id">
+                               typeahead-input-formatter="formatLead($model)" class="form-control" required="required"
+                        ng-value="project.Lead.Username">
 
                         <i ng-show="loadingUsers" class="glyphicon glyphicon-refresh"></i>
                         <div ng-show="noResults">
@@ -49,17 +46,15 @@
                 <div class="form-group">
                     <label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.labels" id="labels"
-                               placeholder="Project labels" required="required" ng-value="projectData.Labels"
-                               ng-init="project.labels=projectData.Labels">
+                        <input type="text" class="form-control" ng-model="project.Labels" id="labels"
+                               placeholder="Project labels" required="required">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="priorities" class="col-md-4 control-label">Priorities (separated by comma)</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.priorities" id="priorities"
-                               placeholder="Project priorities" required="required" ng-value="projectData.Priorities"
-                               ng-init="project.priorities=projectData.Priorities">
+                        <input type="text" class="form-control" ng-model="project.Priorities" id="priorities"
+                               placeholder="Project priorities" required="required">
                     </div>
                 </div>
                 <!--</div>-->

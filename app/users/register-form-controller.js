@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.user.register', [])
+angular.module('trackingSystem.users.register', [])
     .controller('RegisterFormController', [
         '$scope',
         'authentication',

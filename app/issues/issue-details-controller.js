@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('trackingSystem.projects', [])
-    .controller('ProjectDetailsController', [
+angular.module('trackingSystem.issues', [])
+    .controller('IssuesDetailsController', [
         '$scope',
         '$routeParams',
         'notifier',

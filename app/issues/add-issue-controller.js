@@ -4,11 +4,12 @@ angular.module('trackingSystem.issue.add', [])
     .controller('AddIssueController', [
         '$scope',
         '$routeParams',
+        '$location',
         'notifier',
         'userDetailsData',
         'data',
-        function ($scope, $routeParams, notifier, userDetailsData, data) {
-            $scope.ProjectId = $routeParams.id;
+        function ($scope, $routeParams, $location, notifier, userDetailsData, data) {
+            $scope.projectId = $routeParams.id;
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
                 .then(function (response) {
@@ -36,12 +37,14 @@ angular.module('trackingSystem.issue.add', [])
                 console.log(issue);
                 data.post('projects', project)
                     .then(function (response) {
-                        console.log(response);
                         notifier.success(response)
                     }, function (error) {
-                        console.log(error);
                         notifier.error(error.data.Message);
                     });
+            };
+
+            $scope.cancel = function () {
+                $location.path('/projects/' + $scope.projectId);
             }
         }
     ]);
