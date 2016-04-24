@@ -36,6 +36,7 @@ angular.module('trackingSystem', [
         'trackingSystem.issues.issue-view',
         'trackingSystem.issue.add',
         'trackingSystem.issue.edit',
+        'trackingSystem.comments.data-service',
         'trackingSystem.version'
     ])
     .constant({

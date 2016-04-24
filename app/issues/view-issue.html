@@ -42,10 +42,36 @@
     </div>
     <div class="text-center">
         <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
-        <button class="btn btn-primary" ng-click="comment(issue.id)">Add Comment</button>
         <button class="btn btn-warning" ng-click="editIssue(issue.Id)">Edit Issue</button>
         <button class="btn btn-info" ng-click="changeStatus(issue.Id)">Change Issue Status</button>
         <button class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</button>
     </div>
     <br/>
+</div>
+
+<div class="container col-md-6 well" ng-show="issue.comments.length > 0">
+    <div class="list-group">
+        <div class="list-group-item active glyphicon glyphicon-comment">
+            <span>Comments</span>
+        </div>
+
+        <div class="alert alert-dismissible alert-info" ng-repeat="comment in issue.comments">
+            <p>
+                <strong>{{comment.Author.Username}}:</strong> {{comment.Text}}
+            </p>
+            <hr>
+            <p class="text-right">
+                <em>{{comment.CreatedOn}}:</em>
+            </p>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+                        <textarea class="form-control" ng-model="comment.Text" id="comment"
+                                  placeholder="Comment"></textarea>
+        </div>
+    </div>
+    <button class="btn btn-primary" ng-click="commentIssue(issue.Id,comment)" ng-disabled="!comment.Text">Add Comment
+    </button>
 </div>

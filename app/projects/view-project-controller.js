@@ -23,6 +23,7 @@ angular.module('trackingSystem.projects.project-view', [])
                     notifier.error(error.message)
                 });
 
+
             $scope.editProject = function (id) {
                 $location.path('/projects/' + id + '/edit')
             };

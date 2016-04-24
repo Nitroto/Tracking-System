@@ -6,15 +6,23 @@ angular.module('trackingSystem.issues.issue-view', [])
         '$routeParams',
         '$location',
         'issuesDetailsData',
+        'commentsDetailsData',
         'notifier',
-        function ($scope, $routeParams, $location, issuesDetailsData, notifier) {
+        function ($scope, $routeParams, $location, issuesDetailsData, commentsDetailsData, notifier) {
 
             issuesDetailsData.getIssuesById($routeParams.id)
                 .then(function (response) {
                     $scope.issue = response.data;
+                    commentsDetailsData.getComments(response.data.Id)
+                        .then(function (comments) {
+                            $scope.issue.comments = comments.data;
+                        }, function (error) {
+                            notifier.error(error.data.Message)
+                        });
                 }, function (error) {
-                    notifier.error(error.message)
+                    notifier.error(error.data.Message)
                 });
+
 
             $scope.issueDelete = function () {
                 //Not available in back-end
@@ -28,8 +36,15 @@ angular.module('trackingSystem.issues.issue-view', [])
                 // $location.path('#/issues/' + id + '/edit')
             };
 
-            $scope.comment = function (id) {
-                // href="#/projects/{{issue.Id}}/add-issue"
+            $scope.commentIssue = function (id, comment) {
+                commentsDetailsData.addComment(id, comment)
+                    .then(function (response) {
+                        console.log(response);
+                        notifier.success('Comment added successful.');
+                    }, function (error) {
+                        notifier.error(error.Message);
+                    });
+                $scope.comment = undefined;
             };
         }
     ]);
