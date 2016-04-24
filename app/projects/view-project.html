@@ -26,16 +26,20 @@
 
                 <div ng-if="project.Priorities.length > 0">
                     <span><strong>Priorities</strong></span>
-                    <span ng-repeat="priority in project.Priorities">{{priority.Name}}; </span>
+                    <span ng-repeat="priority in issue.Priorities">{{priority.Name}}; </span>
                 </div>
             </div>
         </fieldset>
     </div>
     <div class="text-center">
         <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
-        <a href="#/projects/{{project.Id}}/add-issue" class="btn btn-primary">Add Issue</a>
-        <a href="#/projects/{{project.Id}}/edit" class="btn btn-warning">Edit Project</a>
-        <a class="btn btn-danger" ng-click="projectDelete()" disabled="disabled">Delete project</a>
+        <button class="btn btn-primary" ng-click="addIssue(project.Id)">
+            Add Issue
+        </button>
+        <button class="btn btn-warning" ng-click="editProject(project.Id)">
+            Edit Project
+        </button>
+        <button class="btn btn-danger" ng-click="deleteProject()" disabled="disabled">Delete project</button>
     </div>
     <br/>
 </div>

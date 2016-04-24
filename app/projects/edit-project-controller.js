@@ -9,8 +9,7 @@ angular.module('trackingSystem.projects.edit', [])
         'converter',
         'userDetailsData',
         'projectDetailsData',
-        'data',
-        function ($scope, $routeParams, $location, notifier, converter, userDetailsData, projectDetailsData, data) {
+        function ($scope, $routeParams, $location, notifier, converter, userDetailsData, projectDetailsData) {
             $scope.projectOriginalData = {};
             $scope.project = {};
 
@@ -46,20 +45,18 @@ angular.module('trackingSystem.projects.edit', [])
 
             $scope.editProject = function (projectData) {
 
-                console.log(projectData);
-
-
                 var editedProject = {
                     Name: projectData.Name,
                     Description: projectData.Description !== undefined ? projectData.Description : $scope.projectOriginalData.Description,
                     ProjectKey: projectData.ProjectKey,
-                    LeadId: projectData.Lead.LeadId !== undefined ? projectData.Lead.LeadId : $scope.projectOriginalData.Lead.LeadId,
+                    LeadId: projectData.Lead.Id !== undefined ? projectData.Lead.Id : $scope.projectOriginalData.Lead.Id,
                     Labels: [],
                     Priorities: []
                 };
 
+                console.log(editedProject);
 
-                // data.put('projects', project)
+                // data.put('projects', issue)
                 //     .then(function (response) {
                 //         console.log(response);
                 //         notifier.success(response)

@@ -26,7 +26,7 @@ angular.module('trackingSystem.issues', [])
 //     '$location',
 //     '$route',
 //     '$sce',
-//     'project',
+//     'issue',
 //     'identity',
 //     'sweetAlertDispatcher',
 //     'notifier',

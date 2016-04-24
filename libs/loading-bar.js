@@ -19,7 +19,7 @@
 
 'use strict';
 
-// Alias the loading bar for various backwards compatibilities since the project has matured:
+// Alias the loading bar for various backwards compatibilities since the issue has matured:
 angular.module('angular-loading-bar', ['cfp.loadingBarInterceptor']);
 angular.module('chieffancypants.loadingBar', ['cfp.loadingBarInterceptor']);
 

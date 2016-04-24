@@ -24,7 +24,6 @@ angular.module('trackingSystem', [
         'trackingSystem.users.register',
         'trackingSystem.users.data',
         'trackingSystem.users.user-issues-directive',
-        'trackingSystem.dashboard',
         'trackingSystem.dashboard.admin',
         'trackingSystem.dashboard.user',
         'trackingSystem.projects.all',
@@ -36,6 +35,7 @@ angular.module('trackingSystem', [
         'trackingSystem.issues.data-service',
         'trackingSystem.issues.issue-view',
         'trackingSystem.issue.add',
+        'trackingSystem.issue.edit',
         'trackingSystem.version'
     ])
     .constant({
@@ -84,7 +84,7 @@ angular.module('trackingSystem', [
             })
             .when('/issues/:id/edit', {
                 templateUrl: 'app/issues/edit-issue.html',
-                // controller: 'HomePageController'
+                controller: 'EditIssueController'
             })
             .when('/profile/password', {
                 templateUrl: 'app/profile/change-password.html',

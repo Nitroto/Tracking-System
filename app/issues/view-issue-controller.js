@@ -21,7 +21,7 @@ angular.module('trackingSystem.issues.issue-view', [])
             };
 
             $scope.editIssue = function (id) {
-                $location.path('#/issues/' + id + '/edit')
+                $location.path('/issues/' + id + '/edit')
             };
 
             $scope.changeStatus = function (id) {

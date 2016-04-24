@@ -35,7 +35,7 @@
                                uib-typeahead="user.Id as user.Username for user in users | filter:$viewValue | limitTo:8"
                                typeahead-loading="loadingUsers" typeahead-no-results="noResults"
                                typeahead-input-formatter="formatLead($model)" class="form-control" required="required"
-                        ng-value="project.Lead.Username">
+                               ng-value="project.Lead.Username">
 
                         <i ng-show="loadingUsers" class="glyphicon glyphicon-refresh"></i>
                         <div ng-show="noResults">

@@ -1,3 +1,84 @@
-<div>
+<div class="panel panel-primary container col-md-5 well bs-component col-md-offset-3 border">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit issue</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="editIssueForm" novalidate>
+            <fieldset>
+                <legend>Issue details</legend>
+                <div class="form-group" ui-validation-show-errors>
+                    <label for="title" class="col-md-4 control-label">Title</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="issue.Title" id="title"
+                               placeholder="Title" required="required" name="title">
+                        <ui-validation-error-messages/>
+                    </div>
+                </div>
+                <div class="form-group" ui-validation-show-errors>
+                    <label for="description" class="col-md-4 control-label">Issue description</label>
+                    <div class="col-md-8">
+                        <textarea class="form-control" ng-model="issue.Description" id="description"
+                                  placeholder="Issue description" required="required" name="description"></textarea>
+                        <ui-validation-error-messages/>
+                    </div>
+                </div>
+                <div class="form-group" ui-validation-show-errors>
+                    <label for="projectId" class="col-md-4 control-label">Project ID</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="issue.Project.Id" id="projectId"
+                               name="title" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="assigneeId" class="col-md-4 control-label">Assignee</label>
+                    <div class="col-md-8" ng-cloak>
+                        <input id="assigneeId" type="text" ng-model="issue.Assignee.Id"
+                               placeholder="Lead username"
+                               uib-typeahead="user.Id as user.Username for user in users | filter:$viewValue | limitTo:8"
+                               typeahead-loading="loadingUsers" typeahead-no-results="noResults"
+                               typeahead-input-formatter="formatLead($model)" class="form-control" required="required"
+                               ng-value="issue.Assignee.Username">
 
+                        <i ng-show="loadingUsers" class="glyphicon glyphicon-refresh"></i>
+                        <div ng-show="noResults">
+                            <i class="glyphicon glyphicon-remove"></i> No Results Found
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group" ui-validation-show-errors>
+                    <label for="priority" class="col-md-4 control-label">Priority</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="priority" ng-model="issue.Priority.Name" id="priority"
+                                required="required">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="normal">Normal</option>
+                            <option value="height">Height</option>
+                            <ui-validation-error-messages/>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ui-validation-show-errors>
+                    <label for="dueDate" class="col-md-4 control-label">Due Date</label>
+                    <div class="col-md-8">
+                        <input type="datetime" class="form-control" ng-model="issue.DueDate" id="dueDate"
+                               required="required" name="dueDate">
+                        <ui-validation-error-messages/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-success btn-lg btn-bloc"
+                                ng-disabled="editIssueForm.$invalid" ng-click="editIssue(issue)">Edit Issue
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-lg btn-bloc"
+                                ng-click="cancel()">Cancel
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </div>

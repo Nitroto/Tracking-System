@@ -23,7 +23,15 @@ angular.module('trackingSystem.projects.project-view', [])
                     notifier.error(error.message)
                 });
 
-            $scope.projectDelete = function () {
+            $scope.editProject = function (id) {
+                $location.path('/projects/' + id + '/edit')
+            };
+
+            $scope.addIssue = function (id) {
+                $location.path('/projects/' + id + '/add-issue');
+            };
+
+            $scope.deleteProject = function () {
                 //Not available in back-end
             }
         }

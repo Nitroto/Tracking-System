@@ -30,12 +30,13 @@ angular.module('trackingSystem.issue.add', [])
                     Title: issueData.title,
                     Description: issueData.description,
                     ProjectId: issueData.projectId,
-                    AssignedId: issueData.assignedId,
+                    AssigneeId: issueData.assigneeId,
                     DueDate: issueData.dueDate,
-                    Priorities: []
+                    PriorityId:'',
+                    Labels: []
                 };
                 console.log(issue);
-                data.post('projects', project)
+                data.post('projects', issue)
                     .then(function (response) {
                         notifier.success(response)
                     }, function (error) {

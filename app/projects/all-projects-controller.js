@@ -21,7 +21,6 @@ angular.module('trackingSystem.projects.all', [])
                     }, function (error) {
                         notifier.error(error.message)
                     });
-
             };
 
             $scope.reloadProjects();
