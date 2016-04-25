@@ -26,7 +26,7 @@
                     <label for="projectId" class="col-md-4 control-label">Project ID</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" ng-model="issue.projectId" id="projectId"
-                               ng-init="issue.projectId=projectId" name="title" disabled="disabled">
+                               ng-init="issue.projectId=projectId" name="projectId" disabled="disabled">
                     </div>
                 </div>
                 <div class="form-group" ui-validation-show-errors>
@@ -45,18 +45,33 @@
                     <div class="col-md-8">
                         <select class="form-control" name="priority" ng-model="issue.priority" id="priority"
                                 required="required">
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="height">Height</option>
+                            <option value={{priority.Id}} ng-repeat="priority in project.Priorities">{{priority.Name}}
+                            </option>
                             <ui-validation-error-messages/>
                         </select>
                     </div>
                 </div>
                 <div class="form-group" ui-validation-show-errors>
+                    <label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="issue.labels" id="labels"
+                               name="labels" required="required">
+                        <ui-validation-error-messages/>
+                    </div>
+                </div>
+                <div class="form-group" ui-validation-show-errors>
                     <label for="dueDate" class="col-md-4 control-label">Due Date</label>
                     <div class="col-md-8">
-                        <input type="datetime-local" class="form-control" ng-model="issue.dueDate" id="dueDate"
-                               required="required" name="dueDate">
+                        <p class="input-group">
+                            <input type="text" class="form-control" ng-model="issue.dueDate" uib-datepicker-popup
+                                   id="dueDate" is-open="datepicker.opened" datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close" name="dueDate"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openDatepicker()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                        </p>
                         <ui-validation-error-messages/>
                     </div>
                 </div>
