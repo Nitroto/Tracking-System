@@ -18,7 +18,7 @@
                 <th>Description</th>
                 <th>Due Date</th>
                 <th>Labels</th>
-                <th>Priorities</th>
+                <th>Priority</th>
             </tr>
             </thead>
             <tbody>
@@ -35,8 +35,8 @@
                         </span>
                 </td>
                 <td class="col-md-2 text-left">
-                        <span class="label label-success" ng-repeat="priority in issue.Priorities">
-                            {{priority.Name}}
+                        <span class="label label-success" >
+                            {{issue.Priority.Name}}
                     </span>
                 </td>
             </tr>

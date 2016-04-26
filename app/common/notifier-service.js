@@ -4,8 +4,8 @@ angular.module('trackingSystem.common.notifier-service', [])
     .factory('notifier', [
         'growl',
         function (growl) {
-            return{
-                success:function (msg) {
+            return {
+                success: function (msg) {
                     growl.success(msg);
                 },
                 warning: function (msg) {

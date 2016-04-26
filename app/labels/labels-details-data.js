@@ -9,6 +9,6 @@ angular.module('trackingSystem.labels.data-service', [])
             }
 
             return {
-                getFilteredComments: getFilteredComments,
+                getFilteredComments: getFilteredComments
             }
         }]);

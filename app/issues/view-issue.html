@@ -32,18 +32,15 @@
                 <div ng-if="issue.Labels.length > 0">
                     <span><strong>Labels:</strong></span> <span id="labels" ng-repeat="label in issue.Labels">{{label.Name}}; </span>
                 </div>
-
-                <div ng-if="issue.AvailableStatuses.length > 0">
-                    <span><strong>Available statuses</strong></span>
-                    <span ng-repeat="status in issue.AvailableStatuses">{{status.Name}}; </span>
-                </div>
             </div>
         </fieldset>
     </div>
     <div class="text-center">
         <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
         <button class="btn btn-warning" ng-click="editIssue(issue.Id)">Edit Issue</button>
-        <button class="btn btn-info" ng-click="changeStatus(issue.Id)">Change Issue Status</button>
+        <button class="btn btn-info" data-toggle="modal" data-target="#statusModal"
+                ng-disabled="issue.AvailableStatuses.length === 0">Change Issue Status
+        </button>
         <button class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</button>
     </div>
     <br/>
@@ -73,4 +70,43 @@
     </div>
     <button class="btn btn-primary" ng-click="commentIssue(issue.Id,comment)" ng-disabled="!comment.Text">Add Comment
     </button>
+</div>
+
+
+<!-- Modal -->
+<div id="statusModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Change issue status</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="input-group">
+                    <p><strong>Current status: </strong>{{issue.Status.Name}}</p>
+                    <label for="status" class="col-md-4 control-label">Available Statuses</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="status" ng-model="status.Id" id="status"
+                                required="required">
+                            <!--ng-options="status.Id as status.Name for status in issue.AvailableStatuses">-->
+                            <option value="" disabled="disabled">-- Status --</option>
+                            <option value={{status.Id}} ng-repeat="status in issue.AvailableStatuses">
+                                {{status.Name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-click="changeStatus(issue.Id, status.Id)" data-dismiss="modal">Save
+                    changes
+                </button>
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
 </div>

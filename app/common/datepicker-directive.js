@@ -2,7 +2,6 @@
 
 angular.module('trackingSystem.common.datapicker-directive', [])
     .directive('datapicker', [
-
         function () {
             return {
                 restrict: 'A',

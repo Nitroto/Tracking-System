@@ -19,18 +19,3 @@ angular.module('trackingSystem.issues', [])
 
         }
     ]);
-
-
-// .controller('ProjectDetailsController', [
-//     '$window',
-//     '$location',
-//     '$route',
-//     '$sce',
-//     'issue',
-//     'identity',
-//     'sweetAlertDispatcher',
-//     'notifier',
-//     'projectDetailsData',
-//     'addProjectData',
-//     'videoUrlUtilities',
-//     projectDetailsController]);

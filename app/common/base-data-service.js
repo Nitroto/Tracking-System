@@ -87,7 +87,7 @@ angular.module('trackingSystem.common.data-service', [])
                 } else {
                     var URL = BASE_URL + url;
 
-                    $http.delete(URL, config)
+                    $http.delete(URL)
                         .then(function (data) {
                             deferred.resolve(data);
                         }, function (error) {

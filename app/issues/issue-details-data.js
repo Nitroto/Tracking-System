@@ -37,6 +37,7 @@ angular.module('trackingSystem.issues.data-service', [])
                 getUserIssues: getUserIssues,
                 getIssuesByFilter: getIssuesByFilter,
                 getIssuesById: getIssuesById,
+                changeIssueStatus: changeIssueStatus,
                 editIssue: editIssue,
                 addIssue: addIssue
             }
