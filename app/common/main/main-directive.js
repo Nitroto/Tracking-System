@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.common', [])
+angular.module('trackingSystem.common.main-directive', [])
     .directive('redirect', ['identity', function (identity) {
         return {
             restrict: 'A',

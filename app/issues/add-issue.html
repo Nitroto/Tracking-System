@@ -59,20 +59,10 @@
                         <ui-validation-error-messages/>
                     </div>
                 </div>
-                <div class="form-group" ui-validation-show-errors>
+                <div class="form-group">
                     <label for="dueDate" class="col-md-4 control-label">Due Date</label>
                     <div class="col-md-8">
-                        <p class="input-group">
-                            <input type="text" class="form-control" ng-model="issue.dueDate" uib-datepicker-popup
-                                   id="dueDate" is-open="datepicker.opened" datepicker-options="dateOptions"
-                                   ng-required="true" close-text="Close" name="dueDate"/>
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="openDatepicker()">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                        </p>
-                        <ui-validation-error-messages/>
+                        <div datapicker id="dueDate" name="dueDate" date="issue.dueDate"></div>
                     </div>
                 </div>
                 <div class="form-group">

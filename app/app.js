@@ -10,13 +10,16 @@ angular.module('trackingSystem', [
         'ui.bootstrap',
         'ui.bootstrap.validation',
         'initialValue',
-        'trackingSystem.common',
+        'MassAutoComplete',
+        'trackingSystem.common.main',
         'trackingSystem.common.navigation-directive',
         'trackingSystem.common.footer-directive',
         'trackingSystem.common.notifier-service',
         'trackingSystem.common.data-service',
         'trackingSystem.common.converter',
         'trackingSystem.common.return-back',
+        'trackingSystem.common.datapicker-controller',
+        'trackingSystem.common.datapicker-directive',
         'trackingSystem.identity.authentication',
         'trackingSystem.identity.identity',
         'trackingSystem.users',
@@ -37,6 +40,7 @@ angular.module('trackingSystem', [
         'trackingSystem.issue.add',
         'trackingSystem.issue.edit',
         'trackingSystem.comments.data-service',
+        'trackingSystem.labels.data-service',
         'trackingSystem.version'
     ])
     .constant({

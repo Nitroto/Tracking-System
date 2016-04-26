@@ -47,46 +47,20 @@ angular.module('trackingSystem.issue.add', [])
                     Labels: converter.convertStringToArray(issueData.labels)
                 };
                 console.log(issue);
-                issuesDetailsData.addIssue(issue)
-                    .then(function (response) {
-                        notifier.success('Issue created successful.');
-                        console.log(response);
-                        $location.path('issues/' + response.data.Id);
-                    }, function (error) {
-                        notifier.error(error.Message);
-                    });
+                // issuesDetailsData.addIssue(issue)
+                //     .then(function (response) {
+                //         notifier.success('Issue created successful.');
+                //         console.log(response);
+                //         $location.path('issues/' + response.data.Id);
+                //     }, function (error) {
+                //         notifier.error(error.Message);
+                //     });
             };
 
             $scope.cancel = function () {
                 $location.path('/projects/' + $scope.projectId);
             };
 
-            // Datepicker
-            $scope.dateOptions = {
-                // dateDisabled: disabled,
-                formatYear: 'yy',
-                maxDate: new Date(2020, 5, 22),
-                minDate: new Date(),
-                startingDay: 1
-            };
 
-            $scope.datepicker = {
-                opened: false
-            };
-
-            $scope.openDatepicker = function () {
-                $scope.datepicker.opened = true;
-            };
-
-            $scope.setDate = function (year, month, day) {
-                $scope.issue.dueDate = new Date(year, month, day);
-            };
-
-            // Disable weekend selection
-            function disabled(data) {
-                var date = data.date,
-                    mode = data.mode;
-                return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-            };
         }
     ]);

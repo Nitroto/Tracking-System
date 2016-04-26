@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackingSystem.common', [])
+angular.module('trackingSystem.common.main', [])
     .controller('MainController', [
         '$scope',
         '$location',

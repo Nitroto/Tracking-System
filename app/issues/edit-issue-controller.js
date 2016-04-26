@@ -8,14 +8,15 @@ angular.module('trackingSystem.issue.edit', [])
         'notifier',
         'converter',
         'userDetailsData',
+        'projectDetailsData',
         'issuesDetailsData',
-        function ($scope, $routeParams, $location, notifier, converter, userDetailsData, issuesDetailsData) {
+        function ($scope, $routeParams, $location, notifier, converter, userDetailsData, projectDetailsData, issuesDetailsData) {
             $scope.issueOriginalData = {};
             $scope.issue = {};
 
             issuesDetailsData.getIssuesById($routeParams.id)
                 .then(function (response) {
-                    $scope.issue = {
+                    $scope.issueOriginalData = {
                         Id: response.data.Id,
                         Title: response.data.Title,
                         IssueKey: response.data.IssueKey,
@@ -30,7 +31,15 @@ angular.module('trackingSystem.issue.edit', [])
                         AvailableStatuses: converter.convertArrayToString(response.data.AvailableStatuses)
                     };
 
-                    angular.copy($scope.issue, $scope.issueOriginalData);
+                    $scope.projectData = projectDetailsData.getProject($scope.issueOriginalData.Project.Id)
+                        .then(function (response) {
+                            $scope.project = response.data;
+                            angular.copy($scope.issueOriginalData, $scope.issue);
+                        }, function (error) {
+                            notifier.error(error.data.Message)
+                        });
+                }, function (error) {
+                    notifier.error(error.data.Message)
                 });
 
             $scope.loadingUsers = userDetailsData.getAllUsers()

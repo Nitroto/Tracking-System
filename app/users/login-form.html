@@ -18,6 +18,8 @@
                     <input type="password" class="form-control" ng-model="user.password" id="password"
                            placeholder="Password" min-length="6" max-length="100" required="required" name="pass">
                     <ui-validation-error-messages/>
+                </div>
+                <div class="col-md-10">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" ng-model="user.remember">Remember me
@@ -28,8 +30,7 @@
             <div class="form-group">
                 <div class="text-center">
                     <button type="submit" class="btn btn-success btn-block" ng-disabled="loginForm.$invalid"
-                            ng-click="login(user)"
-                    >Sign in
+                            ng-click="login(user)">Sign in
                     </button>
                 </div>
             </div>
