@@ -46,15 +46,13 @@ angular.module('trackingSystem.issue.add', [])
                     PriorityId: issueData.priority,
                     Labels: converter.convertStringToArray(issueData.labels)
                 };
-                console.log(issue);
-                // issuesDetailsData.addIssue(issue)
-                //     .then(function (response) {
-                //         notifier.success('Issue created successful.');
-                //         console.log(response);
-                //         $location.path('issues/' + response.data.Id);
-                //     }, function (error) {
-                //         notifier.error(error.Message);
-                //     });
+                issuesDetailsData.addIssue(issue)
+                    .then(function (response) {
+                        notifier.success('Issue created successful.');
+                        $location.path('issues/' + response.data.Id);
+                    }, function (error) {
+                        notifier.error(error.Message);
+                    });
             };
 
             $scope.cancel = function () {

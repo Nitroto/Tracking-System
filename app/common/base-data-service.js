@@ -66,7 +66,7 @@ angular.module('trackingSystem.common.data-service', [])
                 } else {
                     var URL = BASE_URL + url;
 
-                    $http.put(URL, data, config)
+                    $http.put(URL, data)
                         .then(function (data) {
                             deferred.resolve(data);
                         }, function (error) {

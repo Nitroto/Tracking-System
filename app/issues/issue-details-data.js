@@ -21,7 +21,7 @@ angular.module('trackingSystem.issues.data-service', [])
             }
 
             function editIssue(id, issueData) {
-                return data.put('Projects/' + id, issueData)
+                return data.put('Issues/' + id, issueData)
             }
 
             function addIssue(issueData) {

@@ -11,17 +11,17 @@ angular.module('trackingSystem.issue.edit', [])
         'projectDetailsData',
         'issuesDetailsData',
         function ($scope, $routeParams, $location, notifier, converter, userDetailsData, projectDetailsData, issuesDetailsData) {
-            $scope.issueOriginalData = {};
+            var issueOriginalData = {};
             $scope.issue = {};
 
             issuesDetailsData.getIssuesById($routeParams.id)
                 .then(function (response) {
-                    $scope.issueOriginalData = {
+                    issueOriginalData = {
                         Id: response.data.Id,
                         Title: response.data.Title,
                         IssueKey: response.data.IssueKey,
                         Description: response.data.Description,
-                        DueDate: response.data.DueDate,
+                        DueDate: new Date(response.data.DueDate),
                         Project: response.data.Project,
                         Author: response.data.Author,
                         Assignee: response.data.Assignee,
@@ -31,10 +31,10 @@ angular.module('trackingSystem.issue.edit', [])
                         AvailableStatuses: converter.convertArrayToString(response.data.AvailableStatuses)
                     };
 
-                    $scope.projectData = projectDetailsData.getProject($scope.issueOriginalData.Project.Id)
+                    $scope.projectData = projectDetailsData.getProject(issueOriginalData.Project.Id)
                         .then(function (response) {
                             $scope.project = response.data;
-                            angular.copy($scope.issueOriginalData, $scope.issue);
+                            angular.copy(issueOriginalData, $scope.issue);
                         }, function (error) {
                             notifier.error(error.data.Message)
                         });
@@ -58,36 +58,26 @@ angular.module('trackingSystem.issue.edit', [])
 
             $scope.editIssue = function (issueData) {
 
-                console.log(issueData);
-
                 var editedIssue = {
-                    Id: issueData.Id,
                     Title: issueData.Title,
-                    IssueKey: issueData.IssueKey,
-                    Description: issueData.Description !== undefined ? issueData.Description : $scope.issueOriginalData.Description,
-                    DueDate: issueDataa.DueDate !== undefined ? issueData.DueDate : $scope.issueOriginalData.DueDate,
-                    Project: issueData.Project,
-                    Author: issueData.Author,
-                    AssigneeId: issueData.Assignee !== undefined ? issueData.Assignee.Id : $scope.issueOriginalData.Assignee.Id,
-                    Priority: issueData.Priority,
-                    Status: issueData.Status,
-                    Labels: [],
-                    AvailableStatuses: []
+                    Description: issueData.Description !== undefined ? issueData.Description : issueOriginalData.Description,
+                    DueDate: issueData.DueDate !== undefined ? issueData.DueDate.toJSON() : issueOriginalData.DueDate.toJSON(),
+                    AssigneeId: issueData.Assignee !== undefined ? issueData.Assignee.Id : issueOriginalData.Assignee.Id,
+                    PriorityId: issueData.Priority.Id,
+                    Labels: converter.convertStringToArray(issueData.Labels)
                 };
 
-
-                // data.put('projects', issue)
-                //     .then(function (response) {
-                //         console.log(response);
-                //         notifier.success(response)
-                //     }, function (error) {
-                //         console.log(error);
-                //         notifier.error(error.data.Message);
-                //     });
+                issuesDetailsData.editIssue(issueData.Id, editedIssue)
+                    .then(function (response) {
+                        notifier.success('Issue edited successful.');
+                        $location.path('issues/' + response.data.Id);
+                    }, function (error) {
+                        notifier.error(error.data.Message);
+                    });
             };
 
             $scope.cancel = function () {
-                angular.copy($scope.issueOriginalData, $scope.issue);
+                angular.copy(issueOriginalData, $scope.issue);
                 $location.path('/issues/' + $scope.issue.Id);
             };
         }

@@ -31,8 +31,4 @@ angular.module('trackingSystem.common.datapicker-controller', [])
                     mode = data.mode;
                 return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
             }
-
-            $scope.$watch('selectedDate', function (oldVal, newVal) {
-            })
-
         }]);
