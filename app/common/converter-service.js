@@ -19,9 +19,18 @@ angular.module('trackingSystem.common.converter', [])
                 });
                 return names.join(', ')
             };
+
+            var textToAbbreviation = function (input, all) {
+                var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/g;
+                return (!!input) ? input.replace(reg, function (txt) {
+                    return txt.charAt(0).toUpperCase();
+                }) : '';
+            };
+
             return {
                 convertStringToArray: convertStringToArray,
-                convertArrayToString: convertArrayToString
+                convertArrayToString: convertArrayToString,
+                textToAbbreviation: textToAbbreviation
             }
         }
     ]);

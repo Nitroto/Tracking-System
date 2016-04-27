@@ -46,6 +46,7 @@ angular.module('trackingSystem.issue.add', [])
                     PriorityId: issueData.priority,
                     Labels: converter.convertStringToArray(issueData.labels)
                 };
+                
                 issuesDetailsData.addIssue(issue)
                     .then(function (response) {
                         notifier.success('Issue created successful.');

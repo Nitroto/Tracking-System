@@ -6,8 +6,9 @@ angular.module('trackingSystem.projects.add', [])
         '$location',
         'notifier',
         'userDetailsData',
-        'data',
-        function ($scope, $location, notifier, userDetailsData, data) {
+        'projectDetailsData',
+        'converter',
+        function ($scope, $location, notifier, userDetailsData, projectDetailsData, converter) {
             $scope.project = {};
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
@@ -25,19 +26,23 @@ angular.module('trackingSystem.projects.add', [])
                 });
 
             $scope.addProject = function (projectData) {
+                var projectKey = converter.textToAbbreviation(projectData.Name).replace(/\s+/g, '');
+
                 var project = {
                     Name: projectData.Name,
                     Description: projectData.Description,
-                    ProjectKey: projectData.ProjectKey,
+                    ProjectKey: projectKey,
                     LeadId: projectData.LeadId,
-                    Labels: [],
-                    Priorities: []
+                    Labels: converter.convertStringToArray(projectData.Labels),
+                    Priorities: converter.convertStringToArray(projectData.Priorities)
                 };
-
-                data.post('projects', project)
+                
+                projectDetailsData.addProject(project)
                     .then(function (response) {
-                        notifier.success(response)
+                        notifier.success('Project added successful.');
+                        $location.path('/projects/' + response.data.Id);
                     }, function (error) {
+
                         notifier.error(error.data.Message);
                     });
             };
