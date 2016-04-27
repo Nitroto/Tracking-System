@@ -10,12 +10,12 @@ angular.module('trackingSystem.projects.edit', [])
         'userDetailsData',
         'projectDetailsData',
         function ($scope, $routeParams, $location, notifier, converter, userDetailsData, projectDetailsData) {
-            $scope.projectOriginalData = {};
+            var projectOriginalData = {};
             $scope.project = {};
 
             projectDetailsData.getProject($routeParams.id)
                 .then(function (response) {
-                    $scope.project = {
+                    projectOriginalData = {
                         Id: response.data.Id,
                         Name: response.data.Name,
                         ProjectKey: response.data.ProjectKey,
@@ -26,7 +26,7 @@ angular.module('trackingSystem.projects.edit', [])
                         TransitionSchemeId: response.data.TransitionSchemeId
                     };
 
-                    angular.copy($scope.project, $scope.projectOriginalData);
+                    angular.copy(projectOriginalData, $scope.project);
                 });
 
             $scope.loadingUsers = userDetailsData.getAllUsers()
@@ -47,27 +47,25 @@ angular.module('trackingSystem.projects.edit', [])
 
                 var editedProject = {
                     Name: projectData.Name,
-                    Description: projectData.Description !== undefined ? projectData.Description : $scope.projectOriginalData.Description,
+                    Description: projectData.Description !== undefined ? projectData.Description : projectOriginalData.Description,
                     ProjectKey: projectData.ProjectKey,
-                    LeadId: projectData.Lead.Id !== undefined ? projectData.Lead.Id : $scope.projectOriginalData.Lead.Id,
-                    Labels: [],
-                    Priorities: []
+                    LeadId: projectData.Lead.Id !== undefined ? projectData.Lead.Id : projectOriginalData.Lead.Id,
+                    Labels: converter.convertStringToArray(projectData.Labels),
+                    Priorities: converter.convertStringToArray(projectData.Priorities)
                 };
 
-                console.log(editedProject);
-
-                // data.put('projects', issue)
-                //     .then(function (response) {
-                //         console.log(response);
-                //         notifier.success(response)
-                //     }, function (error) {
-                //         console.log(error);
-                //         notifier.error(error.data.Message);
-                //     });
+                projectDetailsData.editProject(projectData.Id, editedProject)
+                    .then(function (response) {
+                        notifier.success('Project edited successful.');
+                        $location.path('projects/' + response.data.Id);
+                    }, function (error) {
+                        console.log(error);
+                        notifier.error(error.data.Message);
+                    });
             };
 
             $scope.cancel = function () {
-                angular.copy($scope.projectOriginalData, $scope.project);
+                angular.copy(projectOriginalData, $scope.project);
                 $location.path('/projects/' + $scope.project.Id);
             };
         }
