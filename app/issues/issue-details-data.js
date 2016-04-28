@@ -12,8 +12,11 @@ angular.module('trackingSystem.issues.data-service', [])
                 return data.get('Issues/me?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&orderBy=' + orderAttribute);
             }
 
-            function getIssuesByFilter(query) {
-                return data.get('Issues/' + query);
+            function getIssuesByFilter(queryParams) {
+                return data.get('Issues/?pageSize=' + queryParams.pageSize
+                    + '&pageNumber=' + queryParams.startPage
+                    + '&filter=' + queryParams.filter);
+                // return data.get('Issues/' + query);
             }
 
             function getIssuesById(id) {

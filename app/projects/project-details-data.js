@@ -13,7 +13,7 @@ angular.module('trackingSystem.projects.data-service', [])
             }
 
             function getProjectsByFilter(queryParams) {
-                return data.get('Projects?pageSize=' + queryParams.pageSize
+                return data.get('Projects/?pageSize=' + queryParams.pageSize
                     + '&pageNumber=' + queryParams.startPage
                     + '&filter=' + queryParams.filter);
             }

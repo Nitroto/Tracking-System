@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('trackingSystem.users.user-issues-directive', [])
-    .directive('userIssues', [
+angular.module('trackingSystem.users.user-assigned-issues-directive', [])
+    .directive('userAssignedIssues', [
         '$location',
         'issuesDetailsData',
         'pageSize',
-        function ($location, issuesDetailsData, pageSize) {
+        'userDetailsData',
+        function ($location, issuesDetailsData, pageSize, userDetailsData) {
             return {
                 restrict: 'A',
                 templateUrl: 'app/users/user-issues.html',
@@ -17,8 +18,9 @@ angular.module('trackingSystem.users.user-issues-directive', [])
                         'orderBy': 'DueDate desc&IssueKey'
                     };
 
+
                     scope.reloadIssues = function () {
-                        issuesDetailsData.getUserIssues(scope.params.pageSize, scope.params.startPage, scope.params.orderBy)
+                        issuesDetailsData.getIssuesByFilter(scope.params)
                             .then(function (response) {
                                 scope.result = response.data;
                             }, function (error) {
@@ -26,7 +28,16 @@ angular.module('trackingSystem.users.user-issues-directive', [])
                             });
                     };
 
-                    scope.reloadIssues();
+                    userDetailsData.getUser()
+                        .then(function (response) {
+                            scope.params = {
+                                'startPage': 1,
+                                'pageSize': pageSize,
+                                'filter': 'Assignee.Id == "' + response.data.Id + '"'
+                            };
+
+                            scope.reloadIssues();
+                        });
 
                     scope.issueSelected = function (id) {
                         $location.path('/issues/' + id);

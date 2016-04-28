@@ -1,5 +1,5 @@
 <div ng-cloak>
-    <div class="text-center">
+    <div class="text-center" ng-show="result.TotalPages > 0">
         <div class="container">
             <uib-pagination total-items="result.TotalCount" ng-model="params.startPage" items-per-page="params.pageSize"
                             ng-change="reloadProjects()" max-size="9" boundary-links="true"
@@ -9,7 +9,7 @@
     </div>
 
     <div class="container">
-        <table class="table table-striped table-hover" ng-if="userLeadProjects.Projects.length > 0">
+        <table class="table table-striped table-hover" ng-if="result.Projects.length > 0">
             <thead>
             <tr>
                 <th>ID</th>
@@ -21,7 +21,7 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="project in userLeadProjects.Projects" ng-click="projectSelected(project.Id)">
+            <tr ng-repeat="project in result.Projects" ng-click="projectSelected(project.Id)">
                 <td class="text-center">{{project.Id}}</td>
                 <td class="col-md-2 text-left">{{project.Name}}</td>
                 <td class="col-md-6 text-justify">{{project.Description|limitTo : 200 }}</td>
@@ -38,12 +38,12 @@
             </tr>
             </tbody>
         </table>
-        <div class="alert alert-dismissible alert-info" ng-if="userLeadProjects.Projects.length===0">
+        <div class="alert alert-dismissible alert-info" ng-if="result.Projects.length===0">
             <H1>No projects</H1>
 
         </div>
 
-        <div class="row text-center" ng-if="userLeadProjects.Projects.length > 10">
+        <div class="row text-center" ng-if="result.Projects.length > 10">
             <uib-pagination total-items="result.TotalCount" ng-model="projectsParams.startPage"
                             items-per-page="projectsParams.pageSize" ng-change="reloadProjects()"
                             max-size="9" boundary-links="true" template-url="app/common/pagination.html">

@@ -27,6 +27,7 @@ angular.module('trackingSystem', [
         'trackingSystem.users.register',
         'trackingSystem.users.data',
         'trackingSystem.users.user-issues-directive',
+        'trackingSystem.users.user-assigned-issues-directive',
         'trackingSystem.users.user-lead-projects-directive',
         'trackingSystem.dashboard.admin',
         'trackingSystem.dashboard.user',
@@ -46,7 +47,7 @@ angular.module('trackingSystem', [
     ])
     .constant({
         'BASE_URL': 'http://softuni-issue-tracker.azurewebsites.net/',
-        'pageSize': 20,
+        'pageSize': 20
         // 'Priority': {
         //     Lowest: 1,
         //     Low: 2,

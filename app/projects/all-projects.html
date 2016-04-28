@@ -1,5 +1,5 @@
 <div ng-cloak>
-    <div class="text-center">
+    <div class="text-center" ng-if="result.TotalPages > 0">
         <div class="container">
             <uib-pagination total-items="result.TotalCount" ng-model="projectsParams.startPage"
                             items-per-page="projectsParams.pageSize" ng-change="reloadProjects()"

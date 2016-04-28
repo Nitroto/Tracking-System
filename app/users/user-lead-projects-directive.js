@@ -13,7 +13,16 @@ angular.module('trackingSystem.users.user-lead-projects-directive', [])
                 scope: {},
                 link: function (scope) {
 
-                    var user = userDetailsData.getUser()
+                    scope.reloadProjects = function () {
+                        projectDetailsData.getProjectsByFilter(scope.params)
+                            .then(function (response) {
+                                scope.result = response.data;
+                            }, function (error) {
+                                notifier.error(error.data.Message);
+                            });
+                    };
+
+                    userDetailsData.getUser()
                         .then(function (response) {
                             scope.params = {
                                 'startPage': 1,
@@ -21,13 +30,7 @@ angular.module('trackingSystem.users.user-lead-projects-directive', [])
                                 'filter': 'Lead.Id == "' + response.data.Id + '"'
                             };
 
-                            projectDetailsData.getProjectsByFilter(scope.params)
-                                .then(function (response) {
-                                    scope.userLeadProjects = response.data;
-                                }, function (error) {
-                                    notifier.error(error.data.Message);
-                                });
-
+                            scope.reloadProjects();
                         });
 
                     scope.projectSelected = function (id) {
