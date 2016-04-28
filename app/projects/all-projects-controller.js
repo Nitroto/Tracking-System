@@ -15,7 +15,7 @@ angular.module('trackingSystem.projects.all', [])
             };
 
             $scope.reloadProjects = function () {
-                projectDetailsData.getProjects($scope.projectsParams)
+                projectDetailsData.getProjectsByFilter($scope.projectsParams)
                     .then(function (result) {
                         $scope.result = result.data;
                     }, function (error) {

@@ -27,6 +27,7 @@ angular.module('trackingSystem', [
         'trackingSystem.users.register',
         'trackingSystem.users.data',
         'trackingSystem.users.user-issues-directive',
+        'trackingSystem.users.user-lead-projects-directive',
         'trackingSystem.dashboard.admin',
         'trackingSystem.dashboard.user',
         'trackingSystem.projects.all',
@@ -46,13 +47,13 @@ angular.module('trackingSystem', [
     .constant({
         'BASE_URL': 'http://softuni-issue-tracker.azurewebsites.net/',
         'pageSize': 20,
-        'Priority': {
-            Lowest: 1,
-            Low: 2,
-            Medium: 3,
-            High: 4,
-            Highest: 5
-        }
+        // 'Priority': {
+        //     Lowest: 1,
+        //     Low: 2,
+        //     Medium: 3,
+        //     High: 4,
+        //     Highest: 5
+        // }
     })
     .config(['$routeProvider', 'growlProvider', function ($routeProvider, growlProvider) {
         growlProvider.globalTimeToLive(5000);
