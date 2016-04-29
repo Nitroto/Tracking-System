@@ -4,6 +4,7 @@
 angular.module('trackingSystem', [
         'ngRoute',
         'ngAnimate',
+        'ngSanitize',
         'ngCookies',
         'angular-growl',
         'angular-loading-bar',
@@ -20,6 +21,8 @@ angular.module('trackingSystem', [
         'trackingSystem.common.return-back',
         'trackingSystem.common.datapicker-controller',
         'trackingSystem.common.datapicker-directive',
+        'trackingSystem.common.http-response-interceptor',
+        'trackingSystem.common.multi-autocomplete-directive',
         'trackingSystem.identity.authentication',
         'trackingSystem.identity.identity',
         'trackingSystem.users',
@@ -56,7 +59,7 @@ angular.module('trackingSystem', [
         //     Highest: 5
         // }
     })
-    .config(['$routeProvider', 'growlProvider', function ($routeProvider, growlProvider) {
+    .config(['$routeProvider', '$httpProvider', 'growlProvider', function ($routeProvider, $httpProvider, growlProvider) {
         growlProvider.globalTimeToLive(5000);
         growlProvider.globalInlineMessages(true);
 
@@ -105,10 +108,12 @@ angular.module('trackingSystem', [
             .otherwise(
                 {redirectTo: '/notfound'}
             );
+
+        $httpProvider.interceptors.push('httpResponseInterceptor');
     }])
     .run(function ($rootScope, $location, authentication, notifier) {
         $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
-            if (rejection === 'not authorized') {
+            if (rejection === 'Unauthorized') {
                 notifier.warning('Please log in first.');
                 $location.path('/');
             }
