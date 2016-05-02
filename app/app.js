@@ -30,10 +30,9 @@ angular.module('trackingSystem', [
         'trackingSystem.users.register',
         'trackingSystem.users.data',
         'trackingSystem.users.user-issues-directive',
-        'trackingSystem.users.user-assigned-issues-directive',
+        'trackingSystem.users.user-assigned-projects-directive',
         'trackingSystem.users.user-lead-projects-directive',
-        'trackingSystem.dashboard.admin',
-        'trackingSystem.dashboard.user',
+        'trackingSystem.profile.change-password',
         'trackingSystem.projects.all',
         'trackingSystem.projects.project-view',
         'trackingSystem.projects.add',
@@ -98,7 +97,7 @@ angular.module('trackingSystem', [
             })
             .when('/profile/password', {
                 templateUrl: 'app/profile/change-password.html',
-                // controller: 'HomePageController'
+                controller: 'ChangePasswordController'
             })
             .when('/logout', {
                 templateUrl: 'app/common/main/main-layout.html',
@@ -112,17 +111,20 @@ angular.module('trackingSystem', [
         $httpProvider.interceptors.push('httpResponseInterceptor');
     }])
     .run(function ($rootScope, $location, authentication, notifier) {
-        $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
+        $rootScope.$on('$routeChange', function (event, current, previous, rejection) {
+
             if (rejection === 'Unauthorized') {
                 notifier.warning('Please log in first.');
                 $location.path('/');
             }
         });
-
         if (authentication.isAuthenticated()) {
             authentication.getIdentity()
                 .then(function (identify) {
                     notifier.success('Welcome back, ' + identify.data['Username'] + '!');
                 });
+        }
+        else {
+            $location.path('/');
         }
     });
