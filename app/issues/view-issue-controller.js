@@ -39,8 +39,6 @@ angular.module('trackingSystem.issues.issue-view', [])
                 issuesDetailsData.changeIssueStatus(issueId, statusId).then(function (response) {
                     notifier.success('Status changed successful.');
                     $scope.reloadIssue();
-                }, function (error) {
-                    notifier.error(error.data.Message)
                 });
             };
 
@@ -49,8 +47,6 @@ angular.module('trackingSystem.issues.issue-view', [])
                     .then(function (response) {
                         notifier.success('Comment added successful.');
                         $scope.reloadIssue();
-                    }, function (error) {
-                        notifier.error(error.data.Message);
                     });
                 $scope.comment = undefined;
             };

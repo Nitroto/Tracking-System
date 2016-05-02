@@ -71,8 +71,6 @@ angular.module('trackingSystem.issue.edit', [])
                     .then(function (response) {
                         notifier.success('Issue edited successful.');
                         $location.path('issues/' + response.data.Id);
-                    }, function (error) {
-                        notifier.error(error.data.Message);
                     });
             };
 

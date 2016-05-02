@@ -18,8 +18,6 @@ angular.module('trackingSystem.users.login', [])
                                 expires: loginUser.data['.expires']
                             });
                         }
-                    }, function (error) {
-                        notifier.error(error.data.Message);
                     });
             };
         }]);

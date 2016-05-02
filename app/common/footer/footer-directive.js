@@ -7,7 +7,5 @@ angular.module('trackingSystem.common.footer-directive', [])
                 restrict: 'A',
                 replace: true,
                 templateUrl: 'app/common/footer/footer.html'
-                // controller: ['$scope', '$filter', function ($scope, $filter) {
-                // }]
             }
         }]);

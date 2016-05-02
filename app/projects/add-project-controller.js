@@ -36,14 +36,11 @@ angular.module('trackingSystem.projects.add', [])
                     Labels: converter.convertStringToArray(projectData.Labels),
                     Priorities: converter.convertStringToArray(projectData.Priorities)
                 };
-                
+
                 projectDetailsData.addProject(project)
                     .then(function (response) {
                         notifier.success('Project added successful.');
                         $location.path('/projects/' + response.data.Id);
-                    }, function (error) {
-
-                        notifier.error(error.data.Message);
                     });
             };
 

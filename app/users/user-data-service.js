@@ -12,8 +12,23 @@ angular.module('trackingSystem.users.data', [])
                 return data.get('Users/');
             }
 
+            function getUserByFilter(filter) {
+                return data.get('Users/?filter=' + filter);
+            }
+
+            function makeUserAdmin(userId) {
+                return data.put('Users/makeadmin', userId)
+            }
+
+            function changeUserPassword(userData) {
+                return data.post('api/Account/ChangePassword', userData)
+            }
+
             return {
                 getAllUsers: getAllUsers,
-                getUser: getUser
+                getUser: getUser,
+                getUserByFilter: getUserByFilter,
+                makeUserAdmin: makeUserAdmin,
+                changeUserPassword: changeUserPassword
             }
         }]);

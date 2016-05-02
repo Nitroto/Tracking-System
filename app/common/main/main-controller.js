@@ -18,8 +18,6 @@ angular.module('trackingSystem.common.main', [])
                     .then(function (user) {
                         $scope.currentUser = user;
                         $scope.currentUser.isAuthenticated = identity.isAuthenticated();
-                    }, function (error) {
-                        console.log(error);
                     });
             };
 

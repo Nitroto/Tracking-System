@@ -14,8 +14,6 @@ angular.module('trackingSystem.users.register', [])
                         notifier.success('Register Successful.');
                         authentication.login(loginUser);
                         $route.reload();
-                    }, function (error) {
-                        notifier.error(error.data.Message);
                     })
             };
         }]);

@@ -6,13 +6,14 @@ angular.module('trackingSystem.common.multi-autocomplete-directive', [])
         'labelsDetailsData',
         function ($q, labelsDetailsData) {
             return {
-                restrict: 'A',
+                restrict: 'E',
                 templateUrl: 'app/common/multi-autocomplete.html',
                 priority: 100000,
                 scope: {
-                    userInput: '=data'
+                    ngModel: '='
                 },
-                link: function (scope) {
+                link: function (scope, element) {
+                    // console.log(element);
                     scope.ac_container_options = {
                         debounce_position: 500,
                         debounce_suggest: 200
@@ -44,9 +45,18 @@ angular.module('trackingSystem.common.multi-autocomplete-directive', [])
                         on_error: console.log
                     };
 
-                    scope.$watch('userInput', function (oldVal, newVal) {
-console.log('!');
+                    scope.$watch("userInput", function (newValue, oldValue) {
+                        if (scope.userInput !== undefined && scope.userInput.length > 0) {
+                            console.log(scope.userInput);
+                        }
                     });
+
+                    // element.bind();
+                    //
+                    // scope.$watch('userInput', function (oldVal, newVal) {
+                    //
+                    //     console.log(scope.userInput);
+                    // });
                 }
             }
         }]);

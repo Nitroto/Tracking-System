@@ -1,4 +1,4 @@
-<div class="container col-md-6">
+<div class="container col-md-6" xmlns="http://www.w3.org/1999/html">
 
     <div class="panel panel-primary well bs-component col-md-offset-1 border">
         <div class="panel-heading">
@@ -37,11 +37,15 @@
     </div>
     <div class="text-center">
         <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
-        <button class="btn btn-warning" ng-click="editIssue(issue.Id)">Edit Issue</button>
+        <span ng-if="$parent.currentUser.isAdmin||$parent.currentUser.Id===project.Lead.Id" ng-cloak>
+            <button class="btn btn-warning" ng-click="editIssue(issue.Id)">Edit Issue</button>
+            <button class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</button>
+        </span>
         <button class="btn btn-info" data-toggle="modal" data-target="#statusModal"
-                ng-disabled="issue.AvailableStatuses.length === 0">Change Issue Status
+                ng-disabled="issue.AvailableStatuses.length === 0"
+                ng-if="$parent.currentUser.isAdmin||$parent.currentUser.Id===project.Lead.Id||$parent.currentUser.Id===project.Assignee.Id"
+                ng-cloak>Change Issue Status
         </button>
-        <button class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</button>
     </div>
     <br/>
 </div>

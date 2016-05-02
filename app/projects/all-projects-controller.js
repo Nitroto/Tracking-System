@@ -4,10 +4,9 @@ angular.module('trackingSystem.projects.all', [])
     .controller('AllProjectsController', [
         '$scope',
         '$location',
-        'notifier',
         'projectDetailsData',
         'pageSize',
-        function ($scope, $location, notifier, projectDetailsData, pageSize) {
+        function ($scope, $location, projectDetailsData, pageSize) {
             $scope.projectsParams = {
                 'startPage': 1,
                 'pageSize': pageSize,
@@ -18,8 +17,6 @@ angular.module('trackingSystem.projects.all', [])
                 projectDetailsData.getProjectsByFilter($scope.projectsParams)
                     .then(function (result) {
                         $scope.result = result.data;
-                    }, function (error) {
-                        notifier.error(error.message)
                     });
             };
 

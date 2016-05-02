@@ -33,13 +33,15 @@
     </div>
     <div class="text-center">
         <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
-        <button class="btn btn-primary" ng-click="addIssue(project.Id)">
-            Add Issue
-        </button>
-        <button class="btn btn-warning" ng-click="editProject(project.Id)">
-            Edit Project
-        </button>
-        <button class="btn btn-danger" ng-click="deleteProject()" disabled="disabled">Delete project</button>
+        <span ng-if="$parent.currentUser.isAdmin||$parent.currentUser.Id===project.Lead.Id" ng-cloak>
+            <button class="btn btn-primary" ng-click="addIssue(project.Id)">
+                Add Issue
+            </button>
+            <button class="btn btn-warning" ng-click="editProject(project.Id)">
+                Edit Project
+            </button>
+            <button class="btn btn-danger" ng-click="deleteProject()" disabled="disabled">Delete project</button>
+        </span>
     </div>
     <br/>
 </div>
@@ -55,4 +57,3 @@
         </a>
     </div>
 </div>
-

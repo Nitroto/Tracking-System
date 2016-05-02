@@ -10,8 +10,6 @@ angular.module('trackingSystem.common.datapicker-directive', [])
                 priority: 100000,
                 scope: {
                     selectedDate: '=date'
-                },
-                link: function (scope, el, attr, ctrl) {
                 }
             }
         }]);

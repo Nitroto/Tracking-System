@@ -6,9 +6,6 @@ angular.module('trackingSystem.common.navigation-directive', [])
             return {
                 restrict: 'A',
                 replace: true,
-                templateUrl: 'app/common/navigation/navigation-bar.html',
-                link: function (scope, element, attrs, controller) {
-
-                }
+                templateUrl: 'app/common/navigation/navigation-bar.html'
             }
         }]);

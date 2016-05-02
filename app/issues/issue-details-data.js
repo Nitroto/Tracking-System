@@ -16,7 +16,6 @@ angular.module('trackingSystem.issues.data-service', [])
                 return data.get('Issues/?pageSize=' + queryParams.pageSize
                     + '&pageNumber=' + queryParams.startPage
                     + '&filter=' + queryParams.filter);
-                // return data.get('Issues/' + query);
             }
 
             function getIssuesById(id) {

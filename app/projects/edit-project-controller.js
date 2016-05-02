@@ -39,8 +39,6 @@ angular.module('trackingSystem.projects.edit', [])
                             }
                         }
                     };
-                }, function (error) {
-                    notifier.error(error.data.Message)
                 });
 
             $scope.editProject = function (projectData) {
@@ -58,9 +56,6 @@ angular.module('trackingSystem.projects.edit', [])
                     .then(function (response) {
                         notifier.success('Project edited successful.');
                         $location.path('projects/' + response.data.Id);
-                    }, function (error) {
-                        console.log(error);
-                        notifier.error(error.data.Message);
                     });
             };
 
