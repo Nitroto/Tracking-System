@@ -56,11 +56,8 @@ angular.module('trackingSystem', [
     .config([
         '$routeProvider',
         '$httpProvider',
-        'growlProvider',
         'routeResolversProvider',
-        function ($routeProvider, $httpProvider, growlProvider, routeResolversProvider) {
-            growlProvider.globalTimeToLive(5000);
-            growlProvider.globalInlineMessages(true);
+        function ($routeProvider, $httpProvider, routeResolversProvider) {
 
             var routeResolveChecks = routeResolversProvider.$get();
 
@@ -82,30 +79,34 @@ angular.module('trackingSystem', [
                 })
                 .when('/projects/:id', {
                     templateUrl: 'app/projects/view-project.html',
-                    controller: 'ViewProjectController'
+                    controller: 'ViewProjectController',
+                    resolve: routeResolveChecks.view
                 })
                 .when('/projects/:id/edit', {
                     templateUrl: 'app/projects/edit-project.html',
-                    controller: 'EditProjectController'
+                    controller: 'EditProjectController',
+                    resolve: routeResolveChecks.editProject
                 })
                 .when('/projects/:id/add-issue', {
                     templateUrl: 'app/issues/add-issue.html',
-                    controller: 'AddIssueController'
+                    controller: 'AddIssueController',
+                    resolve: routeResolveChecks.addIssue
                 })
                 .when('/issues/:id', {
                     templateUrl: 'app/issues/view-issue.html',
-                    controller: 'ViewIssueController'
+                    controller: 'ViewIssueController',
+                    resolve: routeResolveChecks.view
                 })
                 .when('/issues/:id/edit', {
                     templateUrl: 'app/issues/edit-issue.html',
-                    controller: 'EditIssueController'
+                    controller: 'EditIssueController',
+                    resolve: routeResolveChecks.editIssue
+
                 })
                 .when('/profile/password', {
                     templateUrl: 'app/profile/change-password.html',
-                    controller: 'ChangePasswordController'
-                })
-                .when('/logout', {
-                    templateUrl: 'app/common/main/main-layout.html',
+                    controller: 'ChangePasswordController',
+                    resolve: routeResolveChecks.changePass
                 }).when('/notfound', {
                     templateUrl: 'app/notfound/page-not-found.html'
                 })
@@ -122,8 +123,13 @@ angular.module('trackingSystem', [
         'notifier',
         function ($rootScope, $location, authentication, notifier) {
             $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
-                if (rejection === 'not authorized') {
+                if (rejection === 'not logged in') {
                     notifier.warning('Please log in first.');
+                    $location.path('/');
+                }
+
+                if (rejection === 'not authorized') {
+                    notifier.warning('Access denied.');
                     $location.path('/');
                 }
             });

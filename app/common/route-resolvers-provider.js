@@ -9,45 +9,68 @@ angular.module('trackingSystem.common.route-resolvers', [])
                     'authentication',
                     function ($q, authentication) {
                         if (!authentication.isAuthenticated()) {
-                            return $q.reject('not authorized');
+                            return $q.reject('not logged in');
                         }
 
                         return $q.when(true);
                     }],
-                userIssues: [
-                    'issuesDetailsData',
-                    function (issuesDetailsData) {
-                        return issuesDetailsData.getUserIssues();
-                    }
-                ],
-                userLeadProjects: [
-                    'projectDetailsData',
-                    function (projectDetailsData) {
-                        return projectDetailsData.getProjectsByFilter();
-                    }
-                ],
-                userAssignedProjects: [
-                    'issuesDetailsData',
-                    function (issuesDetailsData) {
-                        return issuesDetailsData.getIssuesByFilter();
+                administrator: [
+                    '$q',
+                    'identity',
+                    function ($q, identity) {
+                        var deferred = $q.defer();
+                        identity.getUser()
+                            .then(function (response) {
+                                if (!response.isAdmin) {
+                                    deferred.reject('not authorized');
+                                }
+
+                                deferred.resolve(true);
+                            });
+
+                        return deferred.promise;
                     }
                 ],
                 userValidation: [
                     '$injector',
                     function ($injector) {
-                        var authPromis = $injector.invoke(routeResolvers.authenticated);
-                        return authPromis;
+                        var authPromise = $injector.invoke(routeResolvers.authenticated);
+                        return authPromise;
+                    }],
+                adminValidation: [
+                    '$injector',
+                    function ($injector) {
+                        var authPromise = $injector.invoke(routeResolvers.administrator);
+                        return authPromise;
                     }]
             };
 
             var routeResolveChecks = {
-                dashboard: {
-
-                },
+                dashboard: {},
                 addProject: {
-                    userValidation: routeResolvers.userValidation
+                    userValidation: routeResolvers.userValidation,
+                    adminValidation: routeResolvers.adminValidation
                 },
                 listAllProjects: {
+                    userValidation: routeResolvers.userValidation,
+                    adminValidation: routeResolvers.adminValidation
+                },
+                view: {
+                    userValidation: routeResolvers.userValidation
+                },
+                editProject: {
+                    userValidation: routeResolvers.userValidation,
+                    adminValidation: routeResolvers.adminValidation
+                },
+                editIssue: {
+                    userValidation: routeResolvers.userValidation,
+                    adminValidation: routeResolvers.adminValidation
+                },
+                addIssue:{
+                    userValidation: routeResolvers.userValidation,
+                    adminValidation: routeResolvers.adminValidation
+                },
+                changePass:{
                     userValidation: routeResolvers.userValidation
                 }
             };
