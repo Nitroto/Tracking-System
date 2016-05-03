@@ -29,7 +29,7 @@ angular.module('trackingSystem.common.main', [])
                 waitForLogin();
                 $location.path('/');
                 notifier.success('Logout successful.');
-                $route.reload();
+                // $route.reload();
             };
 
             $scope.search = function (searchTerm) {

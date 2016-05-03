@@ -8,6 +8,7 @@ angular.module('trackingSystem', [
         'ngCookies',
         'angular-growl',
         'angular-loading-bar',
+        'ui.router',
         'ui.bootstrap',
         'ui.bootstrap.validation',
         'initialValue',
@@ -23,6 +24,7 @@ angular.module('trackingSystem', [
         'trackingSystem.common.datapicker-directive',
         'trackingSystem.common.http-response-interceptor',
         'trackingSystem.common.multi-autocomplete-directive',
+        'trackingSystem.common.route-resolvers',
         'trackingSystem.identity.authentication',
         'trackingSystem.identity.identity',
         'trackingSystem.users',
@@ -50,81 +52,86 @@ angular.module('trackingSystem', [
     .constant({
         'BASE_URL': 'http://softuni-issue-tracker.azurewebsites.net/',
         'pageSize': 20
-        // 'Priority': {
-        //     Lowest: 1,
-        //     Low: 2,
-        //     Medium: 3,
-        //     High: 4,
-        //     Highest: 5
-        // }
     })
-    .config(['$routeProvider', '$httpProvider', 'growlProvider', function ($routeProvider, $httpProvider, growlProvider) {
-        growlProvider.globalTimeToLive(5000);
-        growlProvider.globalInlineMessages(true);
+    .config([
+        '$routeProvider',
+        '$httpProvider',
+        'growlProvider',
+        'routeResolversProvider',
+        function ($routeProvider, $httpProvider, growlProvider, routeResolversProvider) {
+            growlProvider.globalTimeToLive(5000);
+            growlProvider.globalInlineMessages(true);
 
-        $routeProvider
-            .when('/', {
-                templateUrl: 'app/common/main/main-layout.html',
-                controller: 'MainController'
-            })
-            .when('/projects', {//admin only
-                templateUrl: 'app/projects/all-projects.html',
-                controller: 'AllProjectsController'
-            })
-            .when('/projects/add', {//admin only
-                templateUrl: 'app/projects/add-project.html',
-                controller: 'AddProjectController'
-            })
-            .when('/projects/:id', {
-                templateUrl: 'app/projects/view-project.html',
-                controller: 'ViewProjectController'
-            })
-            .when('/projects/:id/edit', {
-                templateUrl: 'app/projects/edit-project.html',
-                controller: 'EditProjectController'
-            })
-            .when('/projects/:id/add-issue', {
-                templateUrl: 'app/issues/add-issue.html',
-                controller: 'AddIssueController'
-            })
-            .when('/issues/:id', {
-                templateUrl: 'app/issues/view-issue.html',
-                controller: 'ViewIssueController'
-            })
-            .when('/issues/:id/edit', {
-                templateUrl: 'app/issues/edit-issue.html',
-                controller: 'EditIssueController'
-            })
-            .when('/profile/password', {
-                templateUrl: 'app/profile/change-password.html',
-                controller: 'ChangePasswordController'
-            })
-            .when('/logout', {
-                templateUrl: 'app/common/main/main-layout.html',
-            }).when('/notfound', {
-                templateUrl: 'app/notfound/page-not-found.html'
-            })
-            .otherwise(
-                {redirectTo: '/notfound'}
-            );
+            var routeResolveChecks = routeResolversProvider.$get();
 
-        $httpProvider.interceptors.push('httpResponseInterceptor');
-    }])
-    .run(function ($rootScope, $location, authentication, notifier) {
-        $rootScope.$on('$routeChange', function (event, current, previous, rejection) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'app/common/main/main-layout.html',
+                    controller: 'MainController'
+                    // resolve: routeResolveChecks.dashboard
+                })
+                .when('/projects', {//admin only
+                    templateUrl: 'app/projects/all-projects.html',
+                    controller: 'AllProjectsController',
+                    resolve: routeResolveChecks.listAllProjects
+                })
+                .when('/projects/add', {//admin only
+                    templateUrl: 'app/projects/add-project.html',
+                    controller: 'AddProjectController',
+                    resolve: routeResolveChecks.addProject
+                })
+                .when('/projects/:id', {
+                    templateUrl: 'app/projects/view-project.html',
+                    controller: 'ViewProjectController'
+                })
+                .when('/projects/:id/edit', {
+                    templateUrl: 'app/projects/edit-project.html',
+                    controller: 'EditProjectController'
+                })
+                .when('/projects/:id/add-issue', {
+                    templateUrl: 'app/issues/add-issue.html',
+                    controller: 'AddIssueController'
+                })
+                .when('/issues/:id', {
+                    templateUrl: 'app/issues/view-issue.html',
+                    controller: 'ViewIssueController'
+                })
+                .when('/issues/:id/edit', {
+                    templateUrl: 'app/issues/edit-issue.html',
+                    controller: 'EditIssueController'
+                })
+                .when('/profile/password', {
+                    templateUrl: 'app/profile/change-password.html',
+                    controller: 'ChangePasswordController'
+                })
+                .when('/logout', {
+                    templateUrl: 'app/common/main/main-layout.html',
+                }).when('/notfound', {
+                    templateUrl: 'app/notfound/page-not-found.html'
+                })
+                .otherwise(
+                    {redirectTo: '/notfound'}
+                );
 
-            if (rejection === 'Unauthorized') {
-                notifier.warning('Please log in first.');
-                $location.path('/');
+            $httpProvider.interceptors.push('httpResponseInterceptor');
+        }])
+    .run([
+        '$rootScope',
+        '$location',
+        'authentication',
+        'notifier',
+        function ($rootScope, $location, authentication, notifier) {
+            $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
+                if (rejection === 'not authorized') {
+                    notifier.warning('Please log in first.');
+                    $location.path('/');
+                }
+            });
+
+            if (authentication.isAuthenticated()) {
+                authentication.getIdentity()
+                    .then(function (identify) {
+                        notifier.success('Welcome back, ' + identify.data['Username'] + '!');
+                    });
             }
-        });
-        if (authentication.isAuthenticated()) {
-            authentication.getIdentity()
-                .then(function (identify) {
-                    notifier.success('Welcome back, ' + identify.data['Username'] + '!');
-                });
-        }
-        else {
-            $location.path('/');
-        }
-    });
+        }]);

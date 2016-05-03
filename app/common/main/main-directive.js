@@ -2,8 +2,7 @@
 
 angular.module('trackingSystem.common.main-directive', [])
     .directive('redirect', [
-        'identity',
-        function (identity) {
+        function () {
             return {
                 restrict: 'A',
                 priority: 100000,
