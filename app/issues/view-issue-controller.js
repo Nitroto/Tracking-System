@@ -9,7 +9,7 @@ angular.module('trackingSystem.issues.issue-view', [])
         'commentsDetailsData',
         'notifier',
         function ($scope, $routeParams, $location, issuesDetailsData, commentsDetailsData, notifier) {
-
+            console.log($scope);
             $scope.reloadIssue = function () {
                 issuesDetailsData.getIssuesById($routeParams.id)
                     .then(function (response) {

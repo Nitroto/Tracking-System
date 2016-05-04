@@ -6,12 +6,13 @@ angular.module('trackingSystem', [
         'ngAnimate',
         'ngSanitize',
         'ngCookies',
+        // 'permission',
         'angular-growl',
         'angular-loading-bar',
-        'ui.router',
+        // 'ui.router',
         'ui.bootstrap',
         'ui.bootstrap.validation',
-        'initialValue',
+        // 'initialValue',
         'MassAutoComplete',
         'trackingSystem.common.main',
         'trackingSystem.common.navigation-directive',
@@ -132,6 +133,10 @@ angular.module('trackingSystem', [
                     notifier.warning('Access denied.');
                     $location.path('/');
                 }
+            });
+
+            $rootScope.$on('$stateChangeStart', function (event, to, toParams, from, fromParams) {
+                console.log(event);
             });
 
             if (authentication.isAuthenticated()) {

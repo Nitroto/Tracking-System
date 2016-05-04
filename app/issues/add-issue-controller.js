@@ -15,7 +15,7 @@ angular.module('trackingSystem.issue.add', [])
         'labelsDetailsData',
         function ($scope, $routeParams, $location, $q, $sce, notifier, userDetailsData, projectDetailsData, issuesDetailsData, converter, labelsDetailsData) {
             $scope.projectId = $routeParams.id;
-
+            
             // Load necessary data
             $scope.loadingUsers = userDetailsData.getAllUsers()
                 .then(function (response) {
@@ -71,7 +71,6 @@ angular.module('trackingSystem.issue.add', [])
 
             // Buttons
             $scope.addIssue = function (issueData) {
-                console.log(issueData);
                 var issue = {
                     Title: issueData.title,
                     Description: issueData.description,
@@ -81,12 +80,12 @@ angular.module('trackingSystem.issue.add', [])
                     PriorityId: issueData.priority,
                     Labels: converter.convertStringToArray(issueData.labels)
                 };
-                
-                // issuesDetailsData.addIssue(issue)
-                //     .then(function (response) {
-                //         notifier.success('Issue created successful.');
-                //         $location.path('issues/' + response.data.Id);
-                //     });
+
+                issuesDetailsData.addIssue(issue)
+                    .then(function (response) {
+                        notifier.success('Issue created successful.');
+                        $location.path('issues/' + response.data.Id);
+                    });
             };
 
             $scope.cancel = function () {
