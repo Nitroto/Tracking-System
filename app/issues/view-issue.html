@@ -37,13 +37,13 @@
     </div>
     <div class="text-center">
         <button class="btn btn-default glyphicon glyphicon-arrow-left" back> Back</button>
-        <span ng-if="$parent.currentUser.isAdmin||$parent.currentUser.Id===project.Lead.Id" ng-cloak>
+        <span ng-show="role.admin||role.lead" ng-cloak>
             <button class="btn btn-warning" ng-click="editIssue(issue.Id)">Edit Issue</button>
             <button class="btn btn-danger" disabled="disabled" ng-click="issueDelete()">Delete Issue</button>
         </span>
         <button class="btn btn-info" data-toggle="modal" data-target="#statusModal"
                 ng-disabled="issue.AvailableStatuses.length === 0"
-                ng-if="$parent.currentUser.isAdmin||$parent.currentUser.Id===project.Lead.Id||$parent.currentUser.Id===project.Assignee.Id"
+                ng-show="role.admin||role.lead||role.assignee"
                 ng-cloak>Change Issue Status
         </button>
     </div>
@@ -67,13 +67,17 @@
 
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <textarea class="form-control" ng-model="comment.Text" id="comment" placeholder="Comment"></textarea>
+    <div  ng-if="role.admin||role.lead||role.assignee">
+        <div class="form-group">
+            <div class="col-md-10">
+                <textarea class="form-control" ng-model="comment.Text" id="comment" placeholder="Comment"></textarea>
+            </div>
         </div>
+        <button class="btn btn-primary" ng-click="commentIssue(issue.Id,comment)" ng-disabled="!comment.Text">Add
+            Comment
+        </button>
+
     </div>
-    <button class="btn btn-primary" ng-click="commentIssue(issue.Id,comment)" ng-disabled="!comment.Text">Add Comment
-    </button>
 </div>
 
 

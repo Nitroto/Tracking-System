@@ -17,7 +17,7 @@ angular.module('trackingSystem.common.converter', [])
                 var names = arr.map(function (item) {
                     return item['Name'];
                 });
-                return names.join(', ')
+                return names.join(',')
             };
 
             var textToAbbreviation = function (input, all) {

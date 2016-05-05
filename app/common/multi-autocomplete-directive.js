@@ -7,16 +7,31 @@ angular.module('trackingSystem.common.multi-autocomplete-directive', [])
         function ($q, labelsDetailsData) {
             return {
                 restrict: 'E',
+                require: "?ngModel",
                 templateUrl: 'app/common/multi-autocomplete.html',
-                priority: 100000,
                 scope: {
-                    ngModel: '='
+                    input: '=ngModel'
                 },
-                link: function (scope, element) {
-                    // console.log(element);
+                priority: 100000,
+                link: function (scope, element, attrs, ngModel) {
+                    if (!ngModel) return;
+                    console.log(ngModel);
+                    scope.onChange = function () {
+                        ngModel.$setViewValue(scope.input);
+                        console.log(ngModel);
+                    };
+
+                    ngModel.$render = function () {
+                        scope.input = ngModel.$modelValue;
+                    };
+
                     scope.ac_container_options = {
                         debounce_position: 500,
                         debounce_suggest: 200
+                    };
+
+                    scope.onChange = function () {
+                        ngModel.$setViewValue(scope.value);
                     };
 
                     var suggestLabelRemoteAndDelimited = function (term) {
@@ -50,13 +65,6 @@ angular.module('trackingSystem.common.multi-autocomplete-directive', [])
                             console.log(scope.userInput);
                         }
                     });
-
-                    // element.bind();
-                    //
-                    // scope.$watch('userInput', function (oldVal, newVal) {
-                    //
-                    //     console.log(scope.userInput);
-                    // });
                 }
             }
         }]);

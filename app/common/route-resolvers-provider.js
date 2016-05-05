@@ -131,7 +131,6 @@ angular.module('trackingSystem.common.route-resolvers', [])
                 editProject: {
                     userValidation: routeResolvers.userValidation,
                     canEditProject: routeResolvers.canEditProject
-                    // adminValidation: routeResolvers.adminValidation
                 },
                 editIssue: {
                     userValidation: routeResolvers.userValidation,

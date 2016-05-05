@@ -28,6 +28,7 @@ angular.module('trackingSystem', [
         'trackingSystem.common.route-resolvers',
         'trackingSystem.identity.authentication',
         'trackingSystem.identity.identity',
+        'trackingSystem.issues.issue-filter',
         'trackingSystem.users',
         'trackingSystem.users.login',
         'trackingSystem.users.register',

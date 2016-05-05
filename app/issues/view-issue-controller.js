@@ -7,21 +7,29 @@ angular.module('trackingSystem.issues.issue-view', [])
         '$location',
         'issuesDetailsData',
         'commentsDetailsData',
+        'projectDetailsData',
         'notifier',
-        function ($scope, $routeParams, $location, issuesDetailsData, commentsDetailsData, notifier) {
-            console.log($scope);
+        function ($scope, $routeParams, $location, issuesDetailsData, commentsDetailsData, projectDetailsData, notifier) {
+            $scope.role = {
+                admin: false,
+                lead: false,
+                assignee: false
+            };
             $scope.reloadIssue = function () {
                 issuesDetailsData.getIssuesById($routeParams.id)
                     .then(function (response) {
                         $scope.issue = response.data;
-                        commentsDetailsData.getComments(response.data.Id)
-                            .then(function (comments) {
-                                $scope.issue.comments = comments.data;
-                            }, function (error) {
-                                notifier.error(error.data.Message)
+                        projectDetailsData.getProject(response.data.Project.Id)
+                            .then(function (projectData) {
+                                $scope.role.admin = $scope.$parent.currentUser.isAdmin;
+                                $scope.role.lead = projectData.data.Lead.Id === $scope.$parent.currentUser.Id;
+                                $scope.role.assignee = response.data.Assignee.Id === $scope.$parent.currentUser.Id;
+                                commentsDetailsData.getComments(response.data.Id)
+                                    .then(function (comments) {
+                                        $scope.issue.comments = comments.data;
+                                    });
+
                             });
-                    }, function (error) {
-                        notifier.error(error.data.Message)
                     });
             };
 

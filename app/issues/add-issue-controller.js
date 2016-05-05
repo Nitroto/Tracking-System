@@ -15,7 +15,7 @@ angular.module('trackingSystem.issue.add', [])
         'labelsDetailsData',
         function ($scope, $routeParams, $location, $q, $sce, notifier, userDetailsData, projectDetailsData, issuesDetailsData, converter, labelsDetailsData) {
             $scope.projectId = $routeParams.id;
-            
+
             // Load necessary data
             $scope.loadingUsers = userDetailsData.getAllUsers()
                 .then(function (response) {
@@ -27,17 +27,14 @@ angular.module('trackingSystem.issue.add', [])
                             }
                         }
                     };
-                }, function (error) {
-                    notifier.error(error.data.Message)
                 });
 
             $scope.projectData = projectDetailsData.getProject($scope.projectId)
                 .then(function (response) {
                     $scope.project = response.data;
-                }, function (error) {
-                    notifier.error(error.data.Message)
                 });
-
+            
+            // Should be in directive
             $scope.ac_container_options = {
                 debounce_position: 500,
                 debounce_suggest: 200
@@ -68,7 +65,7 @@ angular.module('trackingSystem.issue.add', [])
                 suggest: suggestLabelRemoteAndDelimited,
                 on_error: console.log
             };
-
+            //-----------------------------------
             // Buttons
             $scope.addIssue = function (issueData) {
                 var issue = {
@@ -81,11 +78,13 @@ angular.module('trackingSystem.issue.add', [])
                     Labels: converter.convertStringToArray(issueData.labels)
                 };
 
-                issuesDetailsData.addIssue(issue)
-                    .then(function (response) {
-                        notifier.success('Issue created successful.');
-                        $location.path('issues/' + response.data.Id);
-                    });
+                console.log(issue);
+
+                // issuesDetailsData.addIssue(issue)
+                //     .then(function (response) {
+                //         notifier.success('Issue created successful.');
+                //         $location.path('issues/' + response.data.Id);
+                //     });
             };
 
             $scope.cancel = function () {

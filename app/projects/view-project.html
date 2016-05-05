@@ -46,13 +46,20 @@
     <br/>
 </div>
 
+
 <div class="container col-md-6 well" ng-show="project.issues.length > 0">
+    <ul class="nav nav-pills "><!--not finished-->
+        <li ng-class="{active : showMy}"><a href="" ng-click="showUserIssues()">My Issues</a></li>
+        <li ng-class="{active : showAll}"><a href="" ng-click="showAllIssues()">All Issues</a></li>
+        <li><a href="">Filter</a></li>
+    </ul>
     <div class="list-group">
         <div class="list-group-item active glyphicon glyphicon-exclamation-sign">
             <span>Issues</span>
         </div>
 
-        <a href="#/issues/{{issue.Id}}" class="list-group-item" ng-repeat="issue in project.issues">{{issue.Title}}
+        <a href="#/issues/{{issue.Id}}" class="list-group-item"
+           ng-repeat="issue in project.issues">{{issue.Title}}
             <span class="badge">{{issue.Labels.length}}</span>
         </a>
     </div>

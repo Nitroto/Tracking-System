@@ -66,11 +66,22 @@
                 <div class="form-group" ui-validation-show-errors>
                     <label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="issue.Labels" id="labels"
-                               name="labels" required="required">
-                        <ui-validation-error-messages/>
+                        <div mass-autocomplete="ac_container_options">
+                            <input type="text" class="form-control" ng-model="issue.Labels" id="labels" name="labels"
+                                   required="required" mass-autocomplete-item="ac_option_delimited_remote">
+                            <ui-validation-error-messages/>
+                        </div>
                     </div>
                 </div>
+
+                <!--<div class="form-group" ui-validation-show-errors>-->
+                    <!--<label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>-->
+                    <!--<div class="col-md-8">-->
+                        <!--<input type="text" class="form-control" ng-model="issue.Labels" id="labels"-->
+                               <!--name="labels" required="required">-->
+                        <!--<ui-validation-error-messages/>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         <button type="submit" class="btn btn-success btn-lg btn-bloc" ng-click="editIssue(issue)">Edit

@@ -46,10 +46,21 @@
                 <div class="form-group">
                     <label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" ng-model="project.Labels" id="labels"
-                               placeholder="Project labels" required="required">
+                        <div mass-autocomplete="ac_container_options">
+                            <input type="text" class="form-control" ng-model="project.Labels" id="labels" name="labels"
+                                   required="required" mass-autocomplete-item="ac_option_delimited_remote">
+                        </div>
                     </div>
                 </div>
+
+
+                <!--<div class="form-group">-->
+                    <!--<label for="labels" class="col-md-4 control-label">Labels (separated by comma)</label>-->
+                    <!--<div class="col-md-8">-->
+                        <!--<input type="text" class="form-control" ng-model="project.Labels" id="labels"-->
+                               <!--placeholder="Project labels" required="required">-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="form-group">
                     <label for="priorities" class="col-md-4 control-label">Priorities (separated by comma)</label>
                     <div class="col-md-8">
