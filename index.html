@@ -24,91 +24,91 @@
 </head>
 <body ng-controller="MainController">
 
-<div navigation></div>
+    <div navigation></div>
 
-<div class="clearfix visible-lg"></div>
+    <div class="clearfix visible-lg"></div>
 
-<div growl></div>
+    <div growl></div>
 
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-<div class="clearfix visible-lg"></div>
-<div ng-view></div>
+    <div class="clearfix visible-lg"></div>
+    <div ng-view></div>
 
-<div class="clearfix visible-lg"></div>
-<div footer></div>
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
+    <div class="clearfix visible-lg"></div>
+    <div footer></div>
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
 
-<!-- Load app libraries -->
-<script src="app/libs/angular.js"></script>
-<script src="app/libs/angular-cookies.js"></script>
-<script src="app/libs/angular-route.js"></script>
-<!--<script src="libs/angular-ui-router.js"></script>-->
-<!--<script src="libs/angular-permission.js"></script>-->
-<script src="app/libs/angular-sanitize.js"></script>
-<script src="app/libs/angular-animate.js"></script>
-<script src="app/libs/angular-growl.js"></script>
-<script src="app/libs/jquery.js"></script>
-<script src="app/libs/bootstrap.js"></script>
-<script src="app/libs/modernizr-2.8.3.min.js"></script>
-<script src="app/libs/loading-bar.js"></script>
-<script src="app/libs/ui-bootstrap-tpls-1.3.2.js"></script>
-<script src="app/libs/form-validation.js"></script>
-<!--<script src="libs/angular-initial-value.js"></script>-->
-<script src="app/libs/massautocomplete.js"></script>
+    <!-- Load app libraries -->
+    <script src="app/libs/angular.js"></script>
+    <script src="app/libs/angular-cookies.js"></script>
+    <script src="app/libs/angular-route.js"></script>
+    <!--<script src="libs/angular-ui-router.js"></script>-->
+    <!--<script src="libs/angular-permission.js"></script>-->
+    <script src="app/libs/angular-sanitize.js"></script>
+    <script src="app/libs/angular-animate.js"></script>
+    <script src="app/libs/angular-growl.js"></script>
+    <script src="app/libs/jquery.js"></script>
+    <script src="app/libs/bootstrap.js"></script>
+    <script src="app/libs/modernizr-2.8.3.min.js"></script>
+    <script src="app/libs/loading-bar.js"></script>
+    <script src="app/libs/ui-bootstrap-tpls-1.3.2.js"></script>
+    <script src="app/libs/form-validation.js"></script>
+    <!--<script src="libs/angular-initial-value.js"></script>-->
+    <script src="app/libs/massautocomplete.js"></script>
 
-<!-- Load app source code: main script -->
-<script src="app/app.js"></script>
+    <!-- Load app source code: main script -->
+    <script src="app/app.js"></script>
 
-<!-- Load app source code: services -->
-<script src="app/identity/authentication-service.js"></script>
-<script src="app/identity/identity-service.js"></script>
-<script src="app/common/notifier-service.js"></script>
-<script src="app/common/base-data-service.js"></script>
-<script src="app/common/converter-service.js"></script>
-<script src="app/users/user-data-service.js"></script>
-<script src="app/projects/project-details-data.js"></script>
-<script src="app/issues/issue-details-data.js"></script>
-<script src="app/comments/comments-details-data.js"></script>
-<script src="app/labels/labels-details-data.js"></script>
+    <!-- Load app source code: services -->
+    <script src="app/identity/authentication-service.js"></script>
+    <script src="app/identity/identity-service.js"></script>
+    <script src="app/common/notifier-service.js"></script>
+    <script src="app/common/base-data-service.js"></script>
+    <script src="app/common/converter-service.js"></script>
+    <script src="app/users/user-data-service.js"></script>
+    <script src="app/projects/project-details-data.js"></script>
+    <script src="app/issues/issue-details-data.js"></script>
+    <script src="app/comments/comments-details-data.js"></script>
+    <script src="app/labels/labels-details-data.js"></script>
 
-<!-- Load app source code: controllers -->
-<script src="app/common/main/main-controller.js"></script>
-<script src="app/common/datepicker-controller.js"></script>
-<script src="app/users/register-form-controller.js"></script>
-<script src="app/users/login-form-controller.js"></script>
-<script src="app/users/user-controller.js"></script>
-<script src="app/profile/change-password-controller.js"></script>
-<script src="app/projects/all-projects-controller.js"></script>
-<script src="app/projects/view-project-controller.js"></script>
-<script src="app/projects/add-project-controller.js"></script>
-<script src="app/projects/edit-project-controller.js"></script>
-<script src="app/issues/view-issue-controller.js"></script>
-<script src="app/issues/add-issue-controller.js"></script>
-<script src="app/issues/edit-issue-controller.js"></script>
+    <!-- Load app source code: controllers -->
+    <script src="app/common/main/main-controller.js"></script>
+    <script src="app/common/datepicker-controller.js"></script>
+    <script src="app/users/register-form-controller.js"></script>
+    <script src="app/users/login-form-controller.js"></script>
+    <script src="app/users/user-controller.js"></script>
+    <script src="app/profile/change-password-controller.js"></script>
+    <script src="app/projects/all-projects-controller.js"></script>
+    <script src="app/projects/view-project-controller.js"></script>
+    <script src="app/projects/add-project-controller.js"></script>
+    <script src="app/projects/edit-project-controller.js"></script>
+    <script src="app/issues/view-issue-controller.js"></script>
+    <script src="app/issues/add-issue-controller.js"></script>
+    <script src="app/issues/edit-issue-controller.js"></script>
 
-<!-- Load app source code: directives -->
-<script src="app/common/navigation/navigation-directive.js"></script>
-<script src="app/common/footer/footer-directive.js"></script>
-<script src="app/common/return-back-directive.js"></script>
-<script src="app/common/datepicker-directive.js"></script>
-<script src="app/common/multi-autocomplete-directive.js"></script>
-<script src="app/users/user-issues-directive.js"></script>
-<script src="app/users/user-assigned-projects-directive.js"></script>
-<script src="app/users/user-lead-projects-directive.js"></script>
+    <!-- Load app source code: directives -->
+    <script src="app/common/navigation/navigation-directive.js"></script>
+    <script src="app/common/footer/footer-directive.js"></script>
+    <script src="app/common/return-back-directive.js"></script>
+    <script src="app/common/datepicker-directive.js"></script>
+    <script src="app/common/multi-autocomplete-directive.js"></script>
+    <script src="app/users/user-issues-directive.js"></script>
+    <script src="app/users/user-assigned-projects-directive.js"></script>
+    <script src="app/users/user-lead-projects-directive.js"></script>
 
-<!-- Load app source code: etc. -->
-<script src="app/common/route-resolvers-provider.js"></script>
-<script src="app/components/version/version.js"></script>
-<script src="app/components/version/version-directive.js"></script>
-<script src="app/components/version/interpolate-filter.js"></script>
-<script src="app/projects/project-key-filter.js"></script>
-<script src="app/issues/issues-filter.js"></script>
-<script src="app/common/http-response-interceptor.js"></script>
+    <!-- Load app source code: etc. -->
+    <script src="app/common/route-resolvers-provider.js"></script>
+    <script src="app/components/version/version.js"></script>
+    <script src="app/components/version/version-directive.js"></script>
+    <script src="app/components/version/interpolate-filter.js"></script>
+    <script src="app/projects/project-key-filter.js"></script>
+    <script src="app/issues/issues-filter.js"></script>
+    <script src="app/common/http-response-interceptor.js"></script>
 </body>
 </html>
